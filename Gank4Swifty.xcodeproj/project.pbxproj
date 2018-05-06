@@ -8,11 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		A312F2E0209C856000DF5369 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A312F2DF209C856000DF5369 /* AppDelegate.swift */; };
-		A312F2E2209C856000DF5369 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A312F2E1209C856000DF5369 /* ViewController.swift */; };
+		A312F2E2209C856000DF5369 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A312F2E1209C856000DF5369 /* HomeViewController.swift */; };
 		A312F2E5209C856000DF5369 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A312F2E3209C856000DF5369 /* Main.storyboard */; };
 		A312F2E7209C856100DF5369 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A312F2E6209C856100DF5369 /* Assets.xcassets */; };
 		A312F2EA209C856100DF5369 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A312F2E8209C856100DF5369 /* LaunchScreen.storyboard */; };
 		A312F2F5209C856100DF5369 /* Gank4SwiftyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A312F2F4209C856100DF5369 /* Gank4SwiftyTests.swift */; };
+		A312F303209C869D00DF5369 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A312F302209C869D00DF5369 /* APIManager.swift */; };
+		A312F306209CB08300DF5369 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A312F305209CB08300DF5369 /* DataModel.swift */; };
+		A312F30C209CB41F00DF5369 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A312F30B209CB41F00DF5369 /* DateUtils.swift */; };
+		A312F311209CBBC100DF5369 /* ModelPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A312F310209CBBC100DF5369 /* ModelPresentable.swift */; };
+		A312F313209CBC0200DF5369 /* DataModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A312F312209CBC0200DF5369 /* DataModelItem.swift */; };
+		A312F319209DDAA000DF5369 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A312F318209DDAA000DF5369 /* SearchViewController.swift */; };
+		A32F24EC209EAB5900C456C2 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F24EB209EAB5900C456C2 /* CalendarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +35,7 @@
 /* Begin PBXFileReference section */
 		A312F2DC209C856000DF5369 /* Gank4Swifty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gank4Swifty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A312F2DF209C856000DF5369 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A312F2E1209C856000DF5369 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A312F2E1209C856000DF5369 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A312F2E4209C856000DF5369 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A312F2E6209C856100DF5369 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A312F2E9209C856100DF5369 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +43,13 @@
 		A312F2F0209C856100DF5369 /* Gank4SwiftyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Gank4SwiftyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A312F2F4209C856100DF5369 /* Gank4SwiftyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gank4SwiftyTests.swift; sourceTree = "<group>"; };
 		A312F2F6209C856100DF5369 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A312F302209C869D00DF5369 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		A312F305209CB08300DF5369 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		A312F30B209CB41F00DF5369 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		A312F310209CBBC100DF5369 /* ModelPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPresentable.swift; sourceTree = "<group>"; };
+		A312F312209CBC0200DF5369 /* DataModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelItem.swift; sourceTree = "<group>"; };
+		A312F318209DDAA000DF5369 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		A32F24EB209EAB5900C456C2 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,9 +91,11 @@
 		A312F2DE209C856000DF5369 /* Gank4Swifty */ = {
 			isa = PBXGroup;
 			children = (
+				A312F304209CB04B00DF5369 /* Model */,
+				A312F30D209CBAF300DF5369 /* View */,
+				A312F30F209CBB7A00DF5369 /* ViewModel */,
+				A312F2FF209C866900DF5369 /* Tools */,
 				A312F2DF209C856000DF5369 /* AppDelegate.swift */,
-				A312F2E1209C856000DF5369 /* ViewController.swift */,
-				A312F2E3209C856000DF5369 /* Main.storyboard */,
 				A312F2E6209C856100DF5369 /* Assets.xcassets */,
 				A312F2E8209C856100DF5369 /* LaunchScreen.storyboard */,
 				A312F2EB209C856100DF5369 /* Info.plist */,
@@ -94,6 +110,43 @@
 				A312F2F6209C856100DF5369 /* Info.plist */,
 			);
 			path = Gank4SwiftyTests;
+			sourceTree = "<group>";
+		};
+		A312F2FF209C866900DF5369 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				A312F302209C869D00DF5369 /* APIManager.swift */,
+				A312F30B209CB41F00DF5369 /* DateUtils.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		A312F304209CB04B00DF5369 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A312F305209CB08300DF5369 /* DataModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A312F30D209CBAF300DF5369 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A312F2E1209C856000DF5369 /* HomeViewController.swift */,
+				A312F2E3209C856000DF5369 /* Main.storyboard */,
+				A32F24EB209EAB5900C456C2 /* CalendarView.swift */,
+				A312F318209DDAA000DF5369 /* SearchViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A312F30F209CBB7A00DF5369 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				A312F310209CBBC100DF5369 /* ModelPresentable.swift */,
+				A312F312209CBC0200DF5369 /* DataModelItem.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,7 +250,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A312F2E2209C856000DF5369 /* ViewController.swift in Sources */,
+				A312F303209C869D00DF5369 /* APIManager.swift in Sources */,
+				A312F311209CBBC100DF5369 /* ModelPresentable.swift in Sources */,
+				A312F319209DDAA000DF5369 /* SearchViewController.swift in Sources */,
+				A312F306209CB08300DF5369 /* DataModel.swift in Sources */,
+				A312F30C209CB41F00DF5369 /* DateUtils.swift in Sources */,
+				A32F24EC209EAB5900C456C2 /* CalendarView.swift in Sources */,
+				A312F313209CBC0200DF5369 /* DataModelItem.swift in Sources */,
+				A312F2E2209C856000DF5369 /* HomeViewController.swift in Sources */,
 				A312F2E0209C856000DF5369 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,6 +421,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7L2Y4BKMM4;
 				INFOPLIST_FILE = Gank4Swifty/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -379,6 +440,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7L2Y4BKMM4;
 				INFOPLIST_FILE = Gank4Swifty/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
