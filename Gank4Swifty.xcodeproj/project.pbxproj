@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A301D1A120A7FECD007A132B /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A301D1A020A7FECD007A132B /* UIColorExtension.swift */; };
+		A301D1A420A80AD0007A132B /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A301D1A320A80AD0007A132B /* UIViewExtension.swift */; };
+		A304FE1D20B30C6C007B3A49 /* RefreshControlExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A304FE1A20B30C6C007B3A49 /* RefreshControlExtensions.swift */; };
+		A304FE1E20B30C6C007B3A49 /* RefreshControlHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A304FE1B20B30C6C007B3A49 /* RefreshControlHeader.swift */; };
+		A304FE2020B30CB1007B3A49 /* RefreshControlProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A304FE1F20B30CB1007B3A49 /* RefreshControlProtocol.swift */; };
 		A312F2E0209C856000DF5369 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A312F2DF209C856000DF5369 /* AppDelegate.swift */; };
 		A312F2E2209C856000DF5369 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A312F2E1209C856000DF5369 /* HomeViewController.swift */; };
 		A312F2E5209C856000DF5369 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A312F2E3209C856000DF5369 /* Main.storyboard */; };
@@ -19,7 +24,24 @@
 		A312F311209CBBC100DF5369 /* ModelPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A312F310209CBBC100DF5369 /* ModelPresentable.swift */; };
 		A312F313209CBC0200DF5369 /* DataModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A312F312209CBC0200DF5369 /* DataModelItem.swift */; };
 		A312F319209DDAA000DF5369 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A312F318209DDAA000DF5369 /* SearchViewController.swift */; };
+		A323E36D20A677E300D2DAA9 /* CategoryPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A323E36C20A677E200D2DAA9 /* CategoryPageViewController.swift */; };
 		A32F24EC209EAB5900C456C2 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F24EB209EAB5900C456C2 /* CalendarView.swift */; };
+		A32F24EE209F1F7600C456C2 /* CalendarCellViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32F24ED209F1F7600C456C2 /* CalendarCellViewCollectionViewCell.swift */; };
+		A330E6D520B420FC001385F0 /* UserCollectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A330E6D420B420FC001385F0 /* UserCollectionHeader.swift */; };
+		A334E0A120B30EA000CA7828 /* RefreshControlFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A334E0A020B30EA000CA7828 /* RefreshControlFooter.swift */; };
+		A33FFC2520B3C18500E8B30F /* LocalDataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33FFC2420B3C18500E8B30F /* LocalDataPersistenceManager.swift */; };
+		A361642420A7ED30007FA5AF /* HUDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A361642320A7ED30007FA5AF /* HUDViewController.swift */; };
+		A361642820A7EFB1007FA5AF /* IBDesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A361642720A7EFB1007FA5AF /* IBDesignableView.swift */; };
+		A363252320A52DA800C6E5BA /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A363252220A52DA800C6E5BA /* CategoryViewController.swift */; };
+		A3CA44D720A8876B000CCE4D /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA44D620A8876B000CCE4D /* UIViewControllerExtension.swift */; };
+		A3D6A23D20B6909100175274 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D6A23C20B6909100175274 /* PostViewController.swift */; };
+		A3D6A24020B6A17100175274 /* IBDesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D6A23F20B6A17100175274 /* IBDesignableButton.swift */; };
+		A3E75E5720A03FB900CCB95A /* HomeTabelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E75E5520A03FB900CCB95A /* HomeTabelViewCell.swift */; };
+		A3E75E5820A03FB900CCB95A /* HomeTabelViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3E75E5620A03FB900CCB95A /* HomeTabelViewCell.xib */; };
+		A3E75E5A20A0584E00CCB95A /* HomeTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E75E5920A0584E00CCB95A /* HomeTableHeaderView.swift */; };
+		A3E75E6020A096E800CCB95A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E75E5F20A096E800CCB95A /* DetailViewController.swift */; };
+		A3EE72D620B3E41A00E3EB41 /* UserCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3EE72D520B3E41A00E3EB41 /* UserCollectionViewController.swift */; };
+		A3FD15BE20B6FD85005FFC67 /* UserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FD15BD20B6FD85005FFC67 /* UserTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +55,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A301D1A020A7FECD007A132B /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		A301D1A320A80AD0007A132B /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		A304FE1A20B30C6C007B3A49 /* RefreshControlExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshControlExtensions.swift; sourceTree = "<group>"; };
+		A304FE1B20B30C6C007B3A49 /* RefreshControlHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshControlHeader.swift; sourceTree = "<group>"; };
+		A304FE1F20B30CB1007B3A49 /* RefreshControlProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshControlProtocol.swift; sourceTree = "<group>"; };
 		A312F2DC209C856000DF5369 /* Gank4Swifty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gank4Swifty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A312F2DF209C856000DF5369 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A312F2E1209C856000DF5369 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -49,7 +76,24 @@
 		A312F310209CBBC100DF5369 /* ModelPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPresentable.swift; sourceTree = "<group>"; };
 		A312F312209CBC0200DF5369 /* DataModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelItem.swift; sourceTree = "<group>"; };
 		A312F318209DDAA000DF5369 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		A323E36C20A677E200D2DAA9 /* CategoryPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPageViewController.swift; sourceTree = "<group>"; };
 		A32F24EB209EAB5900C456C2 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		A32F24ED209F1F7600C456C2 /* CalendarCellViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCellViewCollectionViewCell.swift; sourceTree = "<group>"; };
+		A330E6D420B420FC001385F0 /* UserCollectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionHeader.swift; sourceTree = "<group>"; };
+		A334E0A020B30EA000CA7828 /* RefreshControlFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RefreshControlFooter.swift; path = "/Users/vg0x00/Desktop/Gank4Swifty/Gank4Swifty/Libs/Refresh Control/RefreshControlFooter.swift"; sourceTree = "<absolute>"; };
+		A33FFC2420B3C18500E8B30F /* LocalDataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataPersistenceManager.swift; sourceTree = "<group>"; };
+		A361642320A7ED30007FA5AF /* HUDViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDViewController.swift; sourceTree = "<group>"; };
+		A361642720A7EFB1007FA5AF /* IBDesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignableView.swift; sourceTree = "<group>"; };
+		A363252220A52DA800C6E5BA /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		A3CA44D620A8876B000CCE4D /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		A3D6A23C20B6909100175274 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
+		A3D6A23F20B6A17100175274 /* IBDesignableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignableButton.swift; sourceTree = "<group>"; };
+		A3E75E5520A03FB900CCB95A /* HomeTabelViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabelViewCell.swift; sourceTree = "<group>"; };
+		A3E75E5620A03FB900CCB95A /* HomeTabelViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTabelViewCell.xib; sourceTree = "<group>"; };
+		A3E75E5920A0584E00CCB95A /* HomeTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableHeaderView.swift; sourceTree = "<group>"; };
+		A3E75E5F20A096E800CCB95A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		A3EE72D520B3E41A00E3EB41 /* UserCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewController.swift; sourceTree = "<group>"; };
+		A3FD15BD20B6FD85005FFC67 /* UserTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +114,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A301D1A220A80AB7007A132B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				A301D1A020A7FECD007A132B /* UIColorExtension.swift */,
+				A301D1A320A80AD0007A132B /* UIViewExtension.swift */,
+				A3CA44D620A8876B000CCE4D /* UIViewControllerExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		A304FE1720B30C3C007B3A49 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				A3D6A23E20B6A14E00175274 /* IB Designable View */,
+				A33FFC2320B3C12F00E8B30F /* Local Data Persistence */,
+				A304FE1820B30C49007B3A49 /* Refresh Control */,
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
+		A304FE1820B30C49007B3A49 /* Refresh Control */ = {
+			isa = PBXGroup;
+			children = (
+				A334E0A020B30EA000CA7828 /* RefreshControlFooter.swift */,
+				A304FE1A20B30C6C007B3A49 /* RefreshControlExtensions.swift */,
+				A304FE1B20B30C6C007B3A49 /* RefreshControlHeader.swift */,
+				A304FE1F20B30CB1007B3A49 /* RefreshControlProtocol.swift */,
+			);
+			path = "Refresh Control";
+			sourceTree = "<group>";
+		};
 		A312F2D3209C856000DF5369 = {
 			isa = PBXGroup;
 			children = (
@@ -91,9 +166,11 @@
 		A312F2DE209C856000DF5369 /* Gank4Swifty */ = {
 			isa = PBXGroup;
 			children = (
+				A304FE1720B30C3C007B3A49 /* Libs */,
+				A301D1A220A80AB7007A132B /* Extension */,
+				A312F30F209CBB7A00DF5369 /* ViewModel */,
 				A312F304209CB04B00DF5369 /* Model */,
 				A312F30D209CBAF300DF5369 /* View */,
-				A312F30F209CBB7A00DF5369 /* ViewModel */,
 				A312F2FF209C866900DF5369 /* Tools */,
 				A312F2DF209C856000DF5369 /* AppDelegate.swift */,
 				A312F2E6209C856100DF5369 /* Assets.xcassets */,
@@ -133,7 +210,19 @@
 			isa = PBXGroup;
 			children = (
 				A312F2E1209C856000DF5369 /* HomeViewController.swift */,
+				A3FD15BD20B6FD85005FFC67 /* UserTableViewController.swift */,
+				A3E75E5520A03FB900CCB95A /* HomeTabelViewCell.swift */,
+				A3E75E5620A03FB900CCB95A /* HomeTabelViewCell.xib */,
+				A3E75E5920A0584E00CCB95A /* HomeTableHeaderView.swift */,
+				A3EE72D520B3E41A00E3EB41 /* UserCollectionViewController.swift */,
 				A312F2E3209C856000DF5369 /* Main.storyboard */,
+				A330E6D420B420FC001385F0 /* UserCollectionHeader.swift */,
+				A3D6A23C20B6909100175274 /* PostViewController.swift */,
+				A3E75E5F20A096E800CCB95A /* DetailViewController.swift */,
+				A32F24ED209F1F7600C456C2 /* CalendarCellViewCollectionViewCell.swift */,
+				A361642320A7ED30007FA5AF /* HUDViewController.swift */,
+				A363252220A52DA800C6E5BA /* CategoryViewController.swift */,
+				A323E36C20A677E200D2DAA9 /* CategoryPageViewController.swift */,
 				A32F24EB209EAB5900C456C2 /* CalendarView.swift */,
 				A312F318209DDAA000DF5369 /* SearchViewController.swift */,
 			);
@@ -147,6 +236,23 @@
 				A312F312209CBC0200DF5369 /* DataModelItem.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A33FFC2320B3C12F00E8B30F /* Local Data Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				A33FFC2420B3C18500E8B30F /* LocalDataPersistenceManager.swift */,
+			);
+			path = "Local Data Persistence";
+			sourceTree = "<group>";
+		};
+		A3D6A23E20B6A14E00175274 /* IB Designable View */ = {
+			isa = PBXGroup;
+			children = (
+				A3D6A23F20B6A17100175274 /* IBDesignableButton.swift */,
+				A361642720A7EFB1007FA5AF /* IBDesignableView.swift */,
+			);
+			path = "IB Designable View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,6 +338,7 @@
 			files = (
 				A312F2EA209C856100DF5369 /* LaunchScreen.storyboard in Resources */,
 				A312F2E7209C856100DF5369 /* Assets.xcassets in Resources */,
+				A3E75E5820A03FB900CCB95A /* HomeTabelViewCell.xib in Resources */,
 				A312F2E5209C856000DF5369 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,13 +357,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3E75E6020A096E800CCB95A /* DetailViewController.swift in Sources */,
+				A361642820A7EFB1007FA5AF /* IBDesignableView.swift in Sources */,
+				A3D6A24020B6A17100175274 /* IBDesignableButton.swift in Sources */,
 				A312F303209C869D00DF5369 /* APIManager.swift in Sources */,
+				A330E6D520B420FC001385F0 /* UserCollectionHeader.swift in Sources */,
+				A361642420A7ED30007FA5AF /* HUDViewController.swift in Sources */,
+				A363252320A52DA800C6E5BA /* CategoryViewController.swift in Sources */,
+				A301D1A120A7FECD007A132B /* UIColorExtension.swift in Sources */,
+				A334E0A120B30EA000CA7828 /* RefreshControlFooter.swift in Sources */,
 				A312F311209CBBC100DF5369 /* ModelPresentable.swift in Sources */,
+				A3FD15BE20B6FD85005FFC67 /* UserTableViewController.swift in Sources */,
 				A312F319209DDAA000DF5369 /* SearchViewController.swift in Sources */,
 				A312F306209CB08300DF5369 /* DataModel.swift in Sources */,
+				A304FE1D20B30C6C007B3A49 /* RefreshControlExtensions.swift in Sources */,
 				A312F30C209CB41F00DF5369 /* DateUtils.swift in Sources */,
+				A3E75E5A20A0584E00CCB95A /* HomeTableHeaderView.swift in Sources */,
 				A32F24EC209EAB5900C456C2 /* CalendarView.swift in Sources */,
+				A3CA44D720A8876B000CCE4D /* UIViewControllerExtension.swift in Sources */,
+				A3D6A23D20B6909100175274 /* PostViewController.swift in Sources */,
+				A3EE72D620B3E41A00E3EB41 /* UserCollectionViewController.swift in Sources */,
+				A323E36D20A677E300D2DAA9 /* CategoryPageViewController.swift in Sources */,
+				A301D1A420A80AD0007A132B /* UIViewExtension.swift in Sources */,
+				A304FE1E20B30C6C007B3A49 /* RefreshControlHeader.swift in Sources */,
+				A304FE2020B30CB1007B3A49 /* RefreshControlProtocol.swift in Sources */,
+				A33FFC2520B3C18500E8B30F /* LocalDataPersistenceManager.swift in Sources */,
+				A3E75E5720A03FB900CCB95A /* HomeTabelViewCell.swift in Sources */,
 				A312F313209CBC0200DF5369 /* DataModelItem.swift in Sources */,
+				A32F24EE209F1F7600C456C2 /* CalendarCellViewCollectionViewCell.swift in Sources */,
 				A312F2E2209C856000DF5369 /* HomeViewController.swift in Sources */,
 				A312F2E0209C856000DF5369 /* AppDelegate.swift in Sources */,
 			);

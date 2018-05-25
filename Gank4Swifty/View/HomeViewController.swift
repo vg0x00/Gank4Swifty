@@ -15,10 +15,25 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var calendarView: CalendarView!
     @IBOutlet weak var dimMask: UIView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet var apiManager: APIManager!
+    @IBOutlet weak var calendarButton: UIBarButtonItem!
+    @IBOutlet var apiManager: APIManager! {
+        didSet {
+            apiManager.delegate = self
+        }
+    }
     
-    var items = [ModelPresentable]()
-    
+    var historyModelContainer: HistoryModelContainer? {
+        didSet {
+            tableView.reloadData()
+            if calendarViewVisible() {
+                animateCalendarIfNeeded(true)
+            }
+        }
+    }
+
+    var selectedModelItem: DataModel?
+    var currentTask: URLSessionTask?
+
     @IBAction func menuButtonTapped(_ sender: UIBarButtonItem) {
         if calendarBottomConstraint.constant != 0 {
             UIView.animate(withDuration: 0.12, delay: 0, options: .curveEaseOut, animations: {
@@ -54,10 +69,20 @@ class HomeViewController: UIViewController {
         }, completion: nil)
     }
 
+    private func calendarViewVisible() -> Bool {
+        return calendarBottomConstraint.constant != 0
+    }
+
     private func animateCalendarIfNeeded(_ shouldAnimate: Bool) {
-        let targetConstant: CGFloat = calendarBottomConstraint.constant == 0 ? 300 : 0
+        let targetConstant: CGFloat = calendarBottomConstraint.constant == 0 ? 336 : 0
         let targetShadowMaskAlpha: CGFloat = targetConstant == 0 ? 0 : 0.4
         calendarBottomConstraint.constant = targetConstant
+        let calendarButtonActived = targetConstant == 0 ? false: true
+        if calendarButtonActived {
+            calendarButton.image = UIImage(named: "icons8-overtime_filled")
+        } else {
+            calendarButton.image = UIImage(named: "icons8-overtime")
+        }
         if shouldAnimate {
             UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
                 self.dimMask.alpha = targetShadowMaskAlpha
@@ -80,17 +105,135 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isTranslucent = false
+        fetchCalendarData()
+        tableView.register(UINib(nibName: "HomeTabelViewCell", bundle: nil), forCellReuseIdentifier: "tableViewCellId")
+        tableView.estimatedRowHeight = 100
+        tableView.estimatedSectionHeaderHeight = 100
+        calendarView.delegate = self
+        tableView.addHeaderRefreshControl(delegate: self)
     }
+
+    func fetchCalendarData() {
+        guard let url = URL(string: "https://gank.io/api/day/history") else { return }
+        showHUD()
+        currentTask = apiManager.dataTask(withRequest: URLRequest(url: url))
+    }
+
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "showDetail":
+            let targetViewController = segue.destination as! DetailViewController
+            if let targetModel = selectedModelItem {
+                targetViewController.modelItem = DataModelItem(withModel: targetModel)
+            }
+      
+        default:
+            break
+        }
+    }
+
 }
 
 extension HomeViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return historyModelContainer?.category.count ?? 1
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        guard let secionName = historyModelContainer?.category[section],
+            let itemsCountInSecion = historyModelContainer?.results[secionName]?.count else { return 0 }
+        return itemsCountInSecion
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCellId", for: indexPath) as! HomeTabelViewCell
+        guard let category = historyModelContainer?.category[indexPath.section],
+            let modelDict = historyModelContainer?.results,
+            let modelList = modelDict[category] else { return cell }
+        let model = DataModelItem(withModel: modelList[indexPath.row])
+        cell.descLabel.text = model.title
+        cell.authorLabel.text = model.author
+        cell.categoryLabel.text = model.type
+        cell.selectionStyle = .none
+        cell.dateLabel.text = model.date
         return cell
+    }
+}
+
+extension HomeViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableCell(withIdentifier: "headerCellId") as! HomeTableHeaderView
+        header.titleLabel.text = historyModelContainer?.category[section]
+        header.titleIcon.tintColor = UIColor(displayP3Red: 255 / 255, green: 71 / 255, blue: 87 / 255, alpha: 1)
+        return header
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let category = historyModelContainer?.category[indexPath.section],
+            let modelDict = historyModelContainer?.results,
+            let modelList = modelDict[category] else { return }
+        selectedModelItem = modelList[indexPath.row]
+        performSegue(withIdentifier: "showDetail", sender: self)
+    }
+}
+
+extension HomeViewController: APIManagerDelegate {
+    func apiManagerOnFailure(withError error: String) {
+        print("debug fetching calendar info error: \(error)")
+        updateHUD(with: .processingFail)
+    }
+
+    func apiManagerOnSuccess(withData data: Data) {
+        let jsonDecoder = JSONDecoder()
+        guard let results = try? jsonDecoder.decode(CalendarModel.self, from: data).results else {
+            print("decode error")
+            updateHUD(with: .processingFail)
+            return
+        }
+
+        let dates = results.map { DateUtil.getDate(withString: $0, format: "yyyy-MM-dd") }
+        self.calendarView.gankDates = dates
+
+        fetchHistory(withDate: results.first)
+    }
+
+    func fetchHistory(withDate target: String?) {
+        guard let date = target?.replacingOccurrences(of: "-", with: "/") else { return }
+        // NOTE: url example: http://gank.io/api/day/2015/08/07
+        let query = "http://gank.io/api/day/".appending(date)
+        guard let url = URL(string: query) else { return }
+
+        currentTask = apiManager.dataTask(withURL: url, onFailure: { [unowned self] (error) in
+            self.updateHUD(with: .processingFail)
+            print("got error when fetching history data: \(error)")
+            self.calendarView.isLoading = false
+        }) { (data) in
+            let jsonDecoder = JSONDecoder()
+            guard var container = try? jsonDecoder.decode(HistoryModelContainer.self, from: data) else {
+                print("json decode error")
+                self.calendarView.isLoading = false
+                return
+            }
+            container.category = container.category.filter{ !$0.contains("Android") }
+            DispatchQueue.main.async {
+                self.hideHUD()
+                self.historyModelContainer = container
+                self.calendarView.isLoading = false
+            }
+        }
+    }
+}
+
+extension HomeViewController: CalendarViewDelegate {
+    func calendarView(didSelect item: String) {
+        fetchHistory(withDate: item)
+    }
+}
+
+extension HomeViewController: RefreshControlDelegate {
+    func refreshControlDidRefresh(sender: RefreshControlAdaptable) {
+        fetchCalendarData()
+        sender.stopRefreshing()
     }
 }

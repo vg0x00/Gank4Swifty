@@ -13,9 +13,9 @@ class DateUtil {
   static var formatter = DateFormatter()
 
   // NOTE: holy rfc3339: http://www.ietf.org/rfc/rfc3339.txt
-  static func getDate(withString str: String?) -> Date? {
+    static func getDate(withString str: String?, format: String = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") -> Date? {
     guard let str = str else { return nil }
-    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+    formatter.dateFormat = format
     formatter.timeZone = TimeZone(abbreviation: "UTC")
     return formatter.date(from:str)
   }

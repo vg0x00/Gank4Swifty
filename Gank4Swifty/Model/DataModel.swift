@@ -9,12 +9,37 @@
 
 import Foundation
 
-struct DataModel {
-  var id: String
-  var desc: String
-  var publishedAt: String
-  var url: String
-  var type: String
-  var who: String
-  var images: [String]
+struct DataModel: Decodable {
+    var id: String?
+    var gId: String?
+    var desc: String
+    var publishedAt: String
+    var url: String
+    var type: String
+    var who: String?
+    var images: [String]?
+
+    enum CodingKeys: String, CodingKey {
+        case id = "_id"
+        case gId = "ganhuo_id"
+        case desc
+        case publishedAt
+        case url
+        case type
+        case who
+        case images
+    }
+}
+
+struct CalendarModel: Decodable {
+    var results: [String]
+}
+
+struct HistoryModelContainer: Decodable {
+    var category: [String]
+    var results: Dictionary<String, [DataModel]>
+}
+
+struct NormalModelContainer: Decodable {
+    var results: Array<DataModel>
 }

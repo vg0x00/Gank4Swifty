@@ -8,8 +8,7 @@
 
 import Foundation
 
-struct DataModelItem: ModelPresentable {
-  var model: DataModel
+struct DataModelItem: ModelPresentable, Codable {
   var title: String
   var date: String
   var url: URL?
@@ -18,12 +17,15 @@ struct DataModelItem: ModelPresentable {
   var type: String
 
   init(withModel model: DataModel) {
-    self.model = model
     self.title = model.desc
     self.date = DateUtil.transformDateString(withDateString: model.publishedAt, outFormat: "yyyy-MM-dd")
     self.url = URL(string: model.url)
-    self.images = model.images.map{ URL(string: $0) }
-    self.author = model.who.isEmpty ? "void": model.who
+    if let imageUrls = model.images {
+        self.images = imageUrls.map{ URL(string: $0) }
+    } else {
+        self.images = []
+    }
+    self.author = model.who ?? "Void"
     self.type = model.type
   }
 }
