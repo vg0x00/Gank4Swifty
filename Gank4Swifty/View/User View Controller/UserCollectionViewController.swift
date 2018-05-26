@@ -104,7 +104,11 @@ extension UserCollectionViewController: UITableViewDelegate {
         let dictKeys = userCollectionDict.keys.map{ $0 }
         let key = dictKeys[section]
         header.titleLabel.text = key
-        return header
+        // NOTE: using normal cell as header will cause section
+        //       header moving with cell when cell delete, return
+        //       header's content view as header view
+        // ref:  https://stackoverflow.com/questions/26009722/swipe-to-delete-cell-causes-tableviewheader-to-move-with-cell
+        return header.contentView
     }
 
     // NOTE: table view editing
@@ -113,6 +117,8 @@ extension UserCollectionViewController: UITableViewDelegate {
         LocalDataPersistenceManager.shared.remove(model: modelItem as! DataModelItem) {
             DispatchQueue.main.async {[unowned self] in
                 print("debug: current user collection data: \(self.userCollectionDict)")
+                // NOTE: update your model, make sure it async with both
+                //       section and indexPath count with the final state
                 self.loadUserCollectionData()
                 tableView.beginUpdates()
                 tableView.deleteRows(at: [indexPath], with: .fade)
