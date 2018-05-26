@@ -74,7 +74,7 @@ class APIManager: NSObject {
         case app = "App"
     }
 
-    func postGankAriticle(url: String, desc: String, who: String, type: String, debug: Bool = true, failureHandler: @escaping (Error) -> Void, successHandler: @escaping (Data)->Void) {
+    func postGankAriticle(url: String, desc: String, who: String, type: String, debug: Bool = false, failureHandler: @escaping (Error) -> Void, successHandler: @escaping (Data)->Void) {
         guard let targetUrl = URL(string: "https://gank.io/api/add2gank") else {
             let error = NSError(domain: "gank.network.error", code: 1, userInfo: [NSLocalizedDescriptionKey: "create gank post url failed"])
             return failureHandler(error)
