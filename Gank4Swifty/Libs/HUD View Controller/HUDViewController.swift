@@ -99,11 +99,13 @@ class HUDViewController: UIViewController {
     }
 
     func hide(delay: TimeInterval) {
-        UIView.animate(withDuration: 0.5, delay: delay, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.3, delay: delay, options: .curveEaseOut, animations: {
             self.hudView.alpha = 0
             self.darkView.alpha = 0
         }) { (completed) in
-            self.dismiss(animated: true, completion: nil)
+            self.willMove(toParentViewController: nil)
+            self.removeFromParentViewController()
+            self.view.removeFromSuperview()
         }
     }
 
@@ -131,7 +133,7 @@ class HUDViewController: UIViewController {
         infoLabel.centerXAnchor.constraint(equalTo: hudView.centerXAnchor).isActive = true
 
         view.addSubview(hudView)
-        hudView.widthAnchor.constraint(equalToConstant: 180).isActive = true
+        hudView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.65).isActive = true
         hudView.heightAnchor.constraint(equalToConstant: 140).isActive = true
         hudView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         hudView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
@@ -151,7 +153,7 @@ class HUDViewController: UIViewController {
         case .processingFail:
             userInteractable = false
             animateSpinnyView = false
-            labelText = "出错啦, 刷新试试~~"
+            labelText = "出错啦, 下拉刷新试试~~"
             tintColor = UIColor(hex: 0xEB5937, alpha: 1)
             spinnerImage = UIImage(named: "icons8-info")?.withRenderingMode(.alwaysTemplate)
             autoHide = true

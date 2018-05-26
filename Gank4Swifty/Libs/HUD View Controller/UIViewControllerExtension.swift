@@ -13,10 +13,11 @@ extension UIViewController {
         let targetViewController =  HUDViewController.shared
         targetViewController.parentView = self.view
         targetViewController.type = type
-        targetViewController.modalTransitionStyle = .crossDissolve
-        targetViewController.modalPresentationStyle = .overCurrentContext
 
-        present(targetViewController, animated: true, completion: nil)
+        // NOTE: using child view controller as plugin is really nice!
+        self.addChildViewController(targetViewController)
+        self.view.addSubview(targetViewController.view)
+        targetViewController.didMove(toParentViewController: self)
     }
 
     func updateHUD(with type: HUDType) {

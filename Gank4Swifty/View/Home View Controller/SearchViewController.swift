@@ -63,14 +63,14 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: APIManagerDelegate {
     func apiManagerOnFailure(withError error: String) {
-//        updateHUD(with: .processingFail)
+        updateHUD(with: .processingFail)
         print("error")
     }
 
     func apiManagerOnSuccess(withData data: Data) {
         let jsonDecoder = JSONDecoder()
         guard let resultContainer = try? jsonDecoder.decode(NormalModelContainer.self, from: data) else {
-//            updateHUD(with: .processingFail)
+            updateHUD(with: .processingFail)
             print("json decode error")
             return
         }
@@ -83,6 +83,7 @@ extension SearchViewController: APIManagerDelegate {
             }
             return
         }
+
         let filteredResult = results.filter { $0.type != "Android" }
         items.append(contentsOf: filteredResult.map { DataModelItem(withModel: $0) })
     }
@@ -94,10 +95,10 @@ extension SearchViewController: UISearchBarDelegate {
         let urlStr = "http://gank.io/api/search/query/\(queryString)/category/all/count/20/page/\(currentPage)"
             .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
             let url = URL(string: urlStr) else {
-//                showHUD(.warnning)
+                showHUD(.warnning)
                 return
         }
-//        showHUD()
+        showHUD()
         currentTask = apiManager.dataTask(withRequest: URLRequest(url: url))
     }
 

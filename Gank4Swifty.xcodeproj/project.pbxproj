@@ -119,7 +119,6 @@
 			children = (
 				A301D1A020A7FECD007A132B /* UIColorExtension.swift */,
 				A301D1A320A80AD0007A132B /* UIViewExtension.swift */,
-				A3CA44D620A8876B000CCE4D /* UIViewControllerExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -127,6 +126,7 @@
 		A304FE1720B30C3C007B3A49 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				A36B909820B8692E00E50101 /* HUD View Controller */,
 				A3D6A23E20B6A14E00175274 /* IB Designable View */,
 				A33FFC2320B3C12F00E8B30F /* Local Data Persistence */,
 				A304FE1820B30C49007B3A49 /* Refresh Control */,
@@ -209,22 +209,12 @@
 		A312F30D209CBAF300DF5369 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A312F2E1209C856000DF5369 /* HomeViewController.swift */,
-				A3FD15BD20B6FD85005FFC67 /* UserTableViewController.swift */,
-				A3E75E5520A03FB900CCB95A /* HomeTabelViewCell.swift */,
-				A3E75E5620A03FB900CCB95A /* HomeTabelViewCell.xib */,
-				A3E75E5920A0584E00CCB95A /* HomeTableHeaderView.swift */,
-				A3EE72D520B3E41A00E3EB41 /* UserCollectionViewController.swift */,
+				A36B90A320B90BE300E50101 /* Shared */,
+				A36B90A220B90B8500E50101 /* Category View Controller */,
+				A36B90A120B90B4400E50101 /* User View Controller */,
+				A36B90A020B90AF400E50101 /* Home View Controller */,
+				A36B909F20B90ABD00E50101 /* Calendar View */,
 				A312F2E3209C856000DF5369 /* Main.storyboard */,
-				A330E6D420B420FC001385F0 /* UserCollectionHeader.swift */,
-				A3D6A23C20B6909100175274 /* PostViewController.swift */,
-				A3E75E5F20A096E800CCB95A /* DetailViewController.swift */,
-				A32F24ED209F1F7600C456C2 /* CalendarCellViewCollectionViewCell.swift */,
-				A361642320A7ED30007FA5AF /* HUDViewController.swift */,
-				A363252220A52DA800C6E5BA /* CategoryViewController.swift */,
-				A323E36C20A677E200D2DAA9 /* CategoryPageViewController.swift */,
-				A32F24EB209EAB5900C456C2 /* CalendarView.swift */,
-				A312F318209DDAA000DF5369 /* SearchViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -244,6 +234,64 @@
 				A33FFC2420B3C18500E8B30F /* LocalDataPersistenceManager.swift */,
 			);
 			path = "Local Data Persistence";
+			sourceTree = "<group>";
+		};
+		A36B909820B8692E00E50101 /* HUD View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A361642320A7ED30007FA5AF /* HUDViewController.swift */,
+				A3CA44D620A8876B000CCE4D /* UIViewControllerExtension.swift */,
+			);
+			path = "HUD View Controller";
+			sourceTree = "<group>";
+		};
+		A36B909F20B90ABD00E50101 /* Calendar View */ = {
+			isa = PBXGroup;
+			children = (
+				A32F24ED209F1F7600C456C2 /* CalendarCellViewCollectionViewCell.swift */,
+				A32F24EB209EAB5900C456C2 /* CalendarView.swift */,
+			);
+			path = "Calendar View";
+			sourceTree = "<group>";
+		};
+		A36B90A020B90AF400E50101 /* Home View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A3E75E5520A03FB900CCB95A /* HomeTabelViewCell.swift */,
+				A3E75E5920A0584E00CCB95A /* HomeTableHeaderView.swift */,
+				A312F318209DDAA000DF5369 /* SearchViewController.swift */,
+				A312F2E1209C856000DF5369 /* HomeViewController.swift */,
+			);
+			path = "Home View Controller";
+			sourceTree = "<group>";
+		};
+		A36B90A120B90B4400E50101 /* User View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A3FD15BD20B6FD85005FFC67 /* UserTableViewController.swift */,
+				A3EE72D520B3E41A00E3EB41 /* UserCollectionViewController.swift */,
+				A3D6A23C20B6909100175274 /* PostViewController.swift */,
+				A330E6D420B420FC001385F0 /* UserCollectionHeader.swift */,
+			);
+			path = "User View Controller";
+			sourceTree = "<group>";
+		};
+		A36B90A220B90B8500E50101 /* Category View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A363252220A52DA800C6E5BA /* CategoryViewController.swift */,
+				A323E36C20A677E200D2DAA9 /* CategoryPageViewController.swift */,
+			);
+			path = "Category View Controller";
+			sourceTree = "<group>";
+		};
+		A36B90A320B90BE300E50101 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				A3E75E5620A03FB900CCB95A /* HomeTabelViewCell.xib */,
+				A3E75E5F20A096E800CCB95A /* DetailViewController.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		A3D6A23E20B6A14E00175274 /* IB Designable View */ = {
