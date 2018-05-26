@@ -53,6 +53,7 @@ class UserTableViewController: UITableViewController {
 
 extension UserTableViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.delegate = nil
         controller.dismiss(animated: true, completion: nil)
     }
 }

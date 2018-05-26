@@ -52,7 +52,7 @@ class PostViewController: UIViewController {
 
         loadingIndicator.startAnimating()
         apiManager.postGankAriticle(url: url, desc: desc, who: author, type: selectedArticleType, failureHandler: { (error) in
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [unowned self] in
                 self.loadingIndicator.stopAnimating()
                 UIView.animate(withDuration: 1.5, animations: {
                     self.failureIndicator.alpha = 1
@@ -61,7 +61,7 @@ class PostViewController: UIViewController {
                 })
             }
         }) { (data) in
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [unowned self] in
                 self.loadingIndicator.stopAnimating()
                 let jsonDecoder = JSONDecoder()
                 guard let result = try? jsonDecoder.decode(PostResponse.self, from: data) else {
