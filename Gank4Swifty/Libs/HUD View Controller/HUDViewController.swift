@@ -12,6 +12,7 @@ enum HUDType {
     case processing
     case processingFail
     case warnning
+    case noMoreData
 }
 
 class HUDViewController: UIViewController {
@@ -161,6 +162,13 @@ class HUDViewController: UIViewController {
             userInteractable = false
             animateSpinnyView = false
             labelText = "请求错误, 稍后再试试~~"
+            tintColor = UIColor(hex: 0xEB5937, alpha: 1)
+            spinnerImage = UIImage(named: "icons8-info")?.withRenderingMode(.alwaysTemplate)
+            autoHide = true
+        case .noMoreData:
+            userInteractable = false
+            animateSpinnyView = false
+            labelText = "没有获取到数据~~"
             tintColor = UIColor(hex: 0xEB5937, alpha: 1)
             spinnerImage = UIImage(named: "icons8-info")?.withRenderingMode(.alwaysTemplate)
             autoHide = true

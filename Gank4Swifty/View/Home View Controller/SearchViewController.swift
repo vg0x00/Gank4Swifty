@@ -81,11 +81,13 @@ extension SearchViewController: APIManagerDelegate {
             if !isLoadingMore {
                 items.removeAll()
             }
+            showHUD(.noMoreData)
             return
         }
 
         let filteredResult = results.filter { $0.type != "Android" }
         items.append(contentsOf: filteredResult.map { DataModelItem(withModel: $0) })
+        hideHUD()
     }
 }
 
