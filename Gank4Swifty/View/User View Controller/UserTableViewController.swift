@@ -32,28 +32,25 @@ class UserTableViewController: UITableViewController {
         if indexPath.section == 2 {
             switch indexPath.row {
             case 0:
-                composeShowMailViewController(with: "Gank4Swifty - 问题反馈")
+                let githubPage = SFSafariViewController(url: URL(string: "https://github.com/vg0x00/Gank4Swifty/issues")!)
+                present(githubPage, animated: true, completion: nil)
             case 1:
-                let githubPage = SFSafariViewController(url: URL(string: "https://www.baidu.com")!)
+                let githubPage = SFSafariViewController(url: URL(string: "https://github.com/vg0x00/Gank4Swifty")!)
                 present(githubPage, animated: true, completion: nil)
             default:
-                composeShowMailViewController(with: "Gank4Swifty - 联系我")
+                composeShowMailViewController {
+                    tableView.deselectRow(at: indexPath, animated: false)
+                }
             }
         }
     }
 
-    private func composeShowMailViewController(with subject: String) {
-        let mailViewController = MFMailComposeViewController()
-        mailViewController.mailComposeDelegate = self
-        mailViewController.setSubject(subject)
-        mailViewController.setToRecipients(["591064967@qq.com"])
-        present(mailViewController, animated: true, completion: nil)
-    }
-}
-
-extension UserTableViewController: MFMailComposeViewControllerDelegate {
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.delegate = nil
-        controller.dismiss(animated: true, completion: nil)
+    private func composeShowMailViewController(completion: @escaping () -> Void) {
+        guard let url = URL(string: "mailto:591064967@qq.com?subject=Gank4Swifty%20Contact%20Me") else { return }
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:]) { (completed) in
+                completion()
+            }
+        } 
     }
 }
