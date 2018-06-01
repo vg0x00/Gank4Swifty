@@ -1236,6 +1236,11 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="KBZ-jh-GCG">
                         <rightBarButtonItems>
+                            <barButtonItem title="Item" image="icons8-safari" id="Cpa-x8-0JQ">
+                                <connections>
+                                    <action selector="safariButtonTapped:" destination="VPG-OL-8hb" id="svn-ce-yXt"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem image="icons8-hearts" id="hBy-Az-0gS">
                                 <connections>
                                     <action selector="likeButtonTapped:" destination="VPG-OL-8hb" id="Vfe-Ni-AIc"/>
@@ -1328,6 +1333,7 @@
         <image name="icons8-paper_plane" width="25" height="25"/>
         <image name="icons8-price_tag" width="25" height="25"/>
         <image name="icons8-quill_with_ink" width="25" height="25"/>
+        <image name="icons8-safari" width="25" height="25"/>
         <image name="icons8-search" width="25" height="25"/>
         <image name="icons8-spiral_bound_booklet" width="25" height="25"/>
         <image name="icons8-timer" width="25" height="25"/>

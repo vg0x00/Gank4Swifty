@@ -9,6 +9,7 @@
 import UIKit
 import WebKit
 import MarkdownView
+import SafariServices
 
 class DetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
@@ -27,6 +28,15 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var likeButton: UIBarButtonItem!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
+    @IBAction func safariButtonTapped(_ sender: UIBarButtonItem) {
+        guard let model = modelItem, let url = model.url else {
+            return
+        }
+
+        let safariViewController = SFSafariViewController(url: url)
+        present(safariViewController, animated: true, completion: nil)
+    }
+
     lazy var markdownView: MarkdownView = {
         let view = MarkdownView()
         view.translatesAutoresizingMaskIntoConstraints = false
