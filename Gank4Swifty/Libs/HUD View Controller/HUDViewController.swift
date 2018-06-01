@@ -148,7 +148,7 @@ class HUDViewController: UIViewController {
             userInteractable = false
             animateSpinnyView = true
             labelText = "载入中..."
-            tintColor = UIColor(hex: 0x606568, alpha: 1)
+            tintColor = UIColor(hex: 0xB4BABA, alpha: 1)
             spinnerImage = UIImage(named: "icons8-reboot")
             autoHide = false
         case .processingFail:

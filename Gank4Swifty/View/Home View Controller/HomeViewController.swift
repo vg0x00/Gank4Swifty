@@ -14,12 +14,14 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var dimMask: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var calendarButton: UIBarButtonItem!
+    @IBOutlet weak var headerBar: UIView!
     @IBOutlet var apiManager: APIManager! {
         didSet {
             apiManager.delegate = self
         }
     }
     
+    @IBOutlet weak var headerBarTextLabel: UILabel!
     var historyModelContainer: HistoryModelContainer? {
         didSet {
             tableView.reloadData()
@@ -74,6 +76,17 @@ class HomeViewController: UIViewController {
         tableView.estimatedSectionHeaderHeight = 100
         calendarView.delegate = self
         tableView.addHeaderRefreshControl(delegate: self)
+
+    }
+
+    func showAndHideHeaderBar() {
+        UIView.animate(withDuration: 0.3, delay: 0.2, options: .curveEaseInOut, animations: {
+            self.headerBar.transform = CGAffineTransform(translationX: 0, y: 40)
+        }, completion: nil)
+
+        UIView.animate(withDuration: 0.2, delay: 1.5, options: .curveEaseIn, animations: {
+            self.headerBar.transform = .identity
+        }, completion: nil)
     }
 
     func fetchCalendarData() {
@@ -128,7 +141,6 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableCell(withIdentifier: "headerCellId") as! HomeTableHeaderView
         header.titleLabel.text = historyModelContainer?.category[section]
-        header.titleIcon.tintColor = UIColor(displayP3Red: 255 / 255, green: 71 / 255, blue: 87 / 255, alpha: 1)
         return header
     }
 
@@ -162,9 +174,10 @@ extension HomeViewController: APIManagerDelegate {
     }
 
     func fetchHistory(withDate target: String?) {
-        guard let date = target?.replacingOccurrences(of: "-", with: "/") else { return }
+        guard let targetDate = target else { return }
+        let targetDateString = targetDate.replacingOccurrences(of: "-", with: "/")
         // NOTE: url example: http://gank.io/api/day/2015/08/07
-        let query = "http://gank.io/api/day/".appending(date)
+        let query = "https://gank.io/api/day/".appending(targetDateString)
         guard let url = URL(string: query) else { return }
 
         currentTask = apiManager.dataTask(withURL: url, onFailure: { [unowned self] (error) in
@@ -183,6 +196,8 @@ extension HomeViewController: APIManagerDelegate {
                 self.hideHUD()
                 self.historyModelContainer = container
                 self.calendarView.isLoading = false
+                self.headerBarTextLabel.text = "期刊号: G:\(targetDate)"
+                self.showAndHideHeaderBar()
             }
         }
     }

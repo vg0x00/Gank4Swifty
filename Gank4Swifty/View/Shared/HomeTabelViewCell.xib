@@ -21,13 +21,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFC-s9-chc">
-                        <rect key="frame" x="16" y="12" width="288" height="20.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="16" y="12" width="288" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.1843137255" green="0.20784313730000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tf6-BE-2eo">
-                        <rect key="frame" x="16" y="44.5" width="16" height="16"/>
+                        <rect key="frame" x="16" y="43.5" width="16" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Tf6-BE-2eo" secondAttribute="height" multiplier="1:1" id="Lpc-le-DEF"/>
                             <constraint firstAttribute="width" constant="16" id="RWV-jb-iu9"/>
@@ -36,29 +36,29 @@
                         <state key="normal" image="icons8-quill_with_ink"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="246" verticalHuggingPriority="251" horizontalCompressionResistancePriority="747" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="COP-7E-IQR">
-                        <rect key="frame" x="38" y="44.5" width="133" height="16"/>
+                        <rect key="frame" x="38" y="43.5" width="133" height="16"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                         <color key="textColor" red="0.4549019608" green="0.49019607840000001" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RqI-hK-zRy">
-                        <rect key="frame" x="183" y="44.5" width="16" height="16"/>
+                        <rect key="frame" x="183" y="43.5" width="16" height="16"/>
                         <color key="tintColor" red="0.027450980390000001" green="0.59999999999999998" blue="0.57254901960000004" alpha="0.79928296232876717" colorSpace="custom" customColorSpace="sRGB"/>
                         <state key="normal" image="icons8-price_tag"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="754" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ni6-rt-0XP" userLabel="Date Label">
-                        <rect key="frame" x="271.5" y="44.5" width="32.5" height="16"/>
+                        <rect key="frame" x="271.5" y="43.5" width="32.5" height="16"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                         <color key="textColor" red="0.4549019608" green="0.49019607840000001" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7z2-dA-zTY">
-                        <rect key="frame" x="249.5" y="44.5" width="16" height="16"/>
+                        <rect key="frame" x="249.5" y="43.5" width="16" height="16"/>
                         <color key="tintColor" red="0.027450980390000001" green="0.59999999999999998" blue="0.57254901960000004" alpha="0.79928296232876717" colorSpace="custom" customColorSpace="sRGB"/>
                         <state key="normal" image="icons8-timer"/>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="757" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZO9-6n-aKl" userLabel="Category Label">
-                        <rect key="frame" x="205" y="44.5" width="32.5" height="16"/>
+                        <rect key="frame" x="205" y="43.5" width="32.5" height="16"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                         <color key="textColor" red="0.4549019608" green="0.49019607840000001" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>

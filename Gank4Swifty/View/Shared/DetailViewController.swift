@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import MarkdownView
 
 class DetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
@@ -24,6 +25,21 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var topContainer: UIView!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var likeButton: UIBarButtonItem!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    
+    lazy var markdownView: MarkdownView = {
+        let view = MarkdownView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.onTouchLink = { (request) in
+            guard let url = request.url else { return false }
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            return true
+        }
+
+        
+        return view
+    }()
+
     @IBAction func shareButtonTapped(_ sender: UIBarButtonItem) {
         guard let item = modelItem, let url = item.url else { return }
         let thingsToShare = [item.title, url] as [Any]
@@ -65,15 +81,20 @@ class DetailViewController: UIViewController {
     }
 
     var modelItem: ModelPresentable?
+    var apiManager = APIManager()
     
     lazy var webView: WKWebView = {
         let config = WKWebViewConfiguration()
+        let webPreference = WKPreferences()
+        webPreference.minimumFontSize = 16
+        config.preferences = webPreference
         config.allowsInlineMediaPlayback = true
         config.allowsPictureInPictureMediaPlayback = true
         let webView = WKWebView(frame: .zero, configuration: config)
         webView.translatesAutoresizingMaskIntoConstraints = false
         webView.scrollView.delegate = self
         webView.scrollView.alwaysBounceVertical = false
+        webView.navigationDelegate = self
         return webView
     }()
     
@@ -89,6 +110,13 @@ class DetailViewController: UIViewController {
         webView.trailingAnchor.constraint(equalTo: webContainer.trailingAnchor).isActive = true
         webView.topAnchor.constraint(equalTo: progressBar.bottomAnchor).isActive = true
         webView.bottomAnchor.constraint(equalTo: webContainer.bottomAnchor).isActive = true
+
+        webContainer.addSubview(markdownView)
+        markdownView.leadingAnchor.constraint(equalTo: webContainer.leadingAnchor).isActive = true
+        markdownView.trailingAnchor.constraint(equalTo: webContainer.trailingAnchor).isActive = true
+        markdownView.topAnchor.constraint(equalTo: webContainer.topAnchor).isActive = true
+        markdownView.bottomAnchor.constraint(equalTo: webContainer.bottomAnchor).isActive = true
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -98,7 +126,71 @@ class DetailViewController: UIViewController {
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.isLoading), options: .new, context: nil)
         updateLikeButtonState()
         config(withModel: model)
-        webView.load(URLRequest(url: url))
+        renderPage(url: url, model: model)
+    }
+
+    private func renderPage(url: URL, model: ModelPresentable) {
+            if url.absoluteString.hasPrefix("https://github.com") {
+                let result = url.absoluteString.split(separator: "/").map { String($0) }
+
+                let user = result[2]
+                let repo = result[3]
+
+                self.loadingIndicator.startAnimating()
+                apiManager.fetchGithubRawReadme(user: user, repo: repo, failureHandler: { (error) in
+                    print("fetch github read me file error: \(error)")
+                    DispatchQueue.main.async {
+                        self.loadingIndicator.stopAnimating()
+                        self.showHUD(.processingFail)
+                    }
+                }) { (content) in
+                    DispatchQueue.main.async {
+                        self.loadingIndicator.stopAnimating()
+                        self.webView.isHidden = true
+                        self.markdownView.isHidden = false
+                        self.markdownView.load(markdown: content)
+                    }
+                }
+                return
+            }
+
+            if url.absoluteString.hasPrefix("https://mp.weixin.qq.com") || model.type == "福利"{
+                self.webView.isHidden = false
+                self.markdownView.isHidden = true
+                self.webView.load(URLRequest(url: url))
+                return
+            }
+
+            if model.type == "休息视频" {
+                UIApplication.shared.open(url, options: [:]) { (completed) in
+                    self.navigationController?.popViewController(animated: false)
+                }
+            }
+
+            self.loadingIndicator.startAnimating()
+            apiManager.fetchHtmlString(url: url.absoluteString, failureHandler: { (error) in
+                print("debug: Error: \(error)")
+                DispatchQueue.main.async {
+                    self.loadingIndicator.stopAnimating()
+                    self.showHUD(.processingFail)
+                }
+            }) { (content) in
+                var contentString = """
+<header>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0,viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <style>h1 {visibility: hidden; } a {color: #0366d6; } img {width: 96vw; height: auto; margin-left: 2vw; margin-right: 2vw; margin-top: 2vw; margin-bottom: auto; padding: 0px;} body {margin: 0; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"; font-size: 16px; line-height: 1.5; word-wrap: break-word;}</style>
+</header>
+"""
+                contentString.append(content)
+                DispatchQueue.main.async {
+                    self.loadingIndicator.stopAnimating()
+                    self.hideHUD()
+                    self.webView.isHidden = false
+                    self.markdownView.isHidden = true
+                    self.webView.loadHTMLString(contentString, baseURL: nil)
+                }
+            }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -144,9 +236,16 @@ extension DetailViewController: UIScrollViewDelegate {
         topContainer.alpha = percent
         view.layoutIfNeeded()
     }
-
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        print("decelerating end")
-    }
 }
 
+extension DetailViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.navigationType == .linkActivated {
+            guard let url = navigationAction.request.url else { return decisionHandler(.cancel) }
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            decisionHandler(.cancel)
+        } else {
+            decisionHandler(.allow)
+        }
+    }
+}
