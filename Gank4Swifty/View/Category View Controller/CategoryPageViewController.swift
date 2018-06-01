@@ -65,7 +65,7 @@ class CategoryPageViewController: UIViewController {
     }
 
     func fetchPageInfo() {
-        guard let queryUrl = "http://gank.io/api/data/\(pageType)/\(pageCount)/\(pageNumber)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+        guard let queryUrl = "https://gank.io/api/data/\(pageType)/\(pageCount)/\(pageNumber)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
             let url = URL(string: queryUrl) else { return }
         showHUD()
         currentTask = apiManager.dataTask(withRequest: URLRequest(url: url))
@@ -75,14 +75,14 @@ class CategoryPageViewController: UIViewController {
         items.removeAll()
         pageNumber = 1
         isReloading = true
-        guard let queryUrl = "http://gank.io/api/data/\(pageType)/\(pageCount)/\(pageNumber)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+        guard let queryUrl = "https://gank.io/api/data/\(pageType)/\(pageCount)/\(pageNumber)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
             let url = URL(string: queryUrl) else { return }
         currentTask = apiManager.dataTask(withRequest: URLRequest(url: url))
     }
 
     func loadMorePageInfo() {
         isLoadingMore = true
-        guard let queryUrl = "http://gank.io/api/data/\(pageType)/\(pageCount)/\(pageNumber)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+        guard let queryUrl = "https://gank.io/api/data/\(pageType)/\(pageCount)/\(pageNumber)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
             let url = URL(string: queryUrl) else { return }
         currentTask = apiManager.dataTask(withRequest: URLRequest(url: url))
     }
