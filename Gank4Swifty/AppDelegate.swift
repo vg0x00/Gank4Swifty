@@ -24,7 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if error != nil || !granted {
                 print("debug: push notification feature disabled")
             }
-            UIApplication.shared.registerForRemoteNotifications()
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
         }
         return true
     }

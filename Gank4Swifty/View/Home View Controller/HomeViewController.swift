@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class HomeViewController: UIViewController {
     @IBOutlet weak var calendarBottomConstraint: NSLayoutConstraint!
@@ -20,6 +21,8 @@ class HomeViewController: UIViewController {
             apiManager.delegate = self
         }
     }
+
+  
     
     @IBOutlet weak var headerBarTextLabel: UILabel!
     var historyModelContainer: HistoryModelContainer? {
@@ -33,6 +36,8 @@ class HomeViewController: UIViewController {
 
     var selectedModelItem: DataModel?
     var currentTask: URLSessionTask?
+    var bannerItems = [DataModel]()
+    var bannerSubviews = [BannerView]()
 
     @IBAction func calendarButtonTapped(_ sender: UIBarButtonItem) {
             animateCalendarIfNeeded(true)
@@ -71,6 +76,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchCalendarData()
+        fetchBannerData()
         tableView.register(UINib(nibName: "HomeTabelViewCell", bundle: nil), forCellReuseIdentifier: "tableViewCellId")
         tableView.estimatedRowHeight = 100
         tableView.estimatedSectionHeaderHeight = 100
@@ -95,61 +101,80 @@ class HomeViewController: UIViewController {
         currentTask = apiManager.dataTask(withRequest: URLRequest(url: url))
     }
 
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "showDetail":
-            let targetViewController = segue.destination as! DetailViewController
-            if let targetModel = selectedModelItem {
-                targetViewController.modelItem = DataModelItem(withModel: targetModel)
-            }
-      
-        default:
-            break
-        }
-    }
-
 }
 
 extension HomeViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return historyModelContainer?.category.count ?? 1
+        guard let sectionCount = historyModelContainer?.category.count else { return 1 }
+        return sectionCount + 1 // "1" for banner view cell
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let secionName = historyModelContainer?.category[section],
+        if section > 0 {
+        guard let secionName = historyModelContainer?.category[section - 1],
             let itemsCountInSecion = historyModelContainer?.results[secionName]?.count else { return 0 }
         return itemsCountInSecion
+        } else { return 1 }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCellId", for: indexPath) as! HomeTabelViewCell
-        guard let category = historyModelContainer?.category[indexPath.section],
-            let modelDict = historyModelContainer?.results,
-            let modelList = modelDict[category] else { return cell }
-        let model = DataModelItem(withModel: modelList[indexPath.row])
-        cell.descLabel.text = model.title
-        cell.authorLabel.text = model.author
-        cell.categoryLabel.text = model.type
-        cell.selectionStyle = .none
-        cell.dateLabel.text = model.date
-        return cell
+        if indexPath.section == 0 { // for banner view
+            let cell = tableView.dequeueReusableCell(withIdentifier: "bannerCellId", for: indexPath) as! BannerTableViewCell
+            cell.configWithModelItems(bannerItems: bannerItems)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCellId", for: indexPath) as! HomeTabelViewCell
+            guard let category = historyModelContainer?.category[indexPath.section - 1],
+                let modelDict = historyModelContainer?.results,
+                let modelList = modelDict[category] else { return cell }
+            let model = DataModelItem(withModel: modelList[indexPath.row])
+
+            cell.config(withModelPresentable: model)
+            return cell
+        }
     }
 }
 
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableCell(withIdentifier: "headerCellId") as! HomeTableHeaderView
-        header.titleLabel.text = historyModelContainer?.category[section]
-        return header
+        if section != 0 {
+            let header = tableView.dequeueReusableCell(withIdentifier: "headerCellId") as! HomeTableHeaderView
+            header.titleLabel.text = historyModelContainer?.category[section - 1]
+            return header
+        }
+        return nil // for banner view, disable header in section
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let category = historyModelContainer?.category[indexPath.section],
-            let modelDict = historyModelContainer?.results,
-            let modelList = modelDict[category] else { return }
-        selectedModelItem = modelList[indexPath.row]
-        performSegue(withIdentifier: "showDetail", sender: self)
+        if indexPath.section != 0 {
+            guard let category = historyModelContainer?.category[indexPath.section - 1],
+                let modelDict = historyModelContainer?.results,
+                let modelList = modelDict[category] else { return }
+            let modelItem = modelList[indexPath.row]
+
+            guard let url = URL(string: modelItem.url) else { return }
+
+            let safariViewController = SFSafariViewController(url: url)
+            present(safariViewController, animated: true, completion: nil)
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            let tableViewWidth = tableView.bounds.width
+            let targetHeight = tableViewWidth * 9 / 16
+            return targetHeight
+        } else {
+            return UITableViewAutomaticDimension
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 0
+        } else {
+            return UITableViewAutomaticDimension
+        }
     }
 }
 
@@ -201,6 +226,22 @@ extension HomeViewController: APIManagerDelegate {
             }
         }
     }
+
+    func fetchBannerData() {
+        guard let url = URL(string: "https://gank.io/api/random/data/iOS/20") else { return }
+        currentTask = apiManager.dataTask(withURL: url, onFailure: { (error) in
+            print("debug fetch banner data error: \(error)")
+        }, onSuccess: { (data) in
+            let jsonDecoder = JSONDecoder()
+            guard let jsonResult = try? jsonDecoder.decode(NormalModelContainer.self, from: data) else { return }
+            var targetItems = jsonResult.results.filter({ (model) -> Bool in
+                return model.images != nil && !model.images!.isEmpty && model.images!.first!.hasPrefix("http://img.gank.io")
+            })
+
+            self.bannerItems = Array(targetItems.prefix(5))
+        })
+    }
+
 }
 
 extension HomeViewController: CalendarViewDelegate {
@@ -212,6 +253,7 @@ extension HomeViewController: CalendarViewDelegate {
 extension HomeViewController: RefreshControlDelegate {
     func refreshControlDidRefresh(sender: RefreshControlAdaptable) {
         fetchCalendarData()
+        fetchBannerData()
         sender.stopRefreshing()
     }
 }

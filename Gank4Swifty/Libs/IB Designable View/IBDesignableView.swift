@@ -16,4 +16,37 @@ class IBDesignableView: UIView {
             layer.cornerRadius = cornerRadius
         }
     }
+
+    var shadowOffset: CGSize = CGSize.zero {
+        didSet {
+            layer.shadowOffset = shadowOffset
+        }
+    }
+
+    @IBInspectable
+    var firstColor: UIColor = UIColor.clear {
+        didSet {
+            updateColorLayer()
+        }
+    }
+
+    @IBInspectable
+    var secondColor: UIColor = UIColor.clear {
+        didSet {
+            updateColorLayer()
+        }
+    }
+
+    override class var layerClass: AnyClass {
+        get {
+            return CAGradientLayer.self
+        }
+    }
+
+    func updateColorLayer() {
+        let layer = self.layer as! CAGradientLayer
+        layer.colors = [firstColor.cgColor, secondColor.cgColor]
+        layer.startPoint = CGPoint.zero
+        layer.endPoint = CGPoint(x: 0, y: 1)
+    }
 }

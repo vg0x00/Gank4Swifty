@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class SearchViewController: UIViewController {
     var items = [ModelPresentable]() {
@@ -14,11 +15,20 @@ class SearchViewController: UIViewController {
             tableView.reloadData()
         }
     }
+    @IBOutlet weak var emptyHolderView: UIView!
+    let searchItems = ["autolayout", "tableview", "json", "iOS", "MVC", "Mac OS", "Swift"]
+    @IBAction func searchButtonTapped(_ sender: IBDesignableButton) {
+        guard let searchBar = searchViewController?.searchBar else { return }
+        searchBar.text = searchItems[sender.tag]
+        searchBarTextDidEndEditing(searchBar)
+    }
 
+    @IBOutlet weak var noSearchResultTextLabel: UILabel!
+    @IBOutlet weak var noSearchResultView: UIView!
     var currentPage: Int = 1
     var currentTask: URLSessionTask?
-    var selectedItem: ModelPresentable?
     var isLoadingMore = false
+    var queryText = ""
 
     @IBOutlet var apiManager: APIManager! {
         didSet {
@@ -50,14 +60,7 @@ class SearchViewController: UIViewController {
         searchBar.sizeToFit()
         searchBar.delegate = self
         navigationItem.titleView = searchBar
-    }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let modelItem = selectedItem else { return }
-        if segue.identifier == "showDetailFromSearch" {
-            let targetController = segue.destination as! DetailViewController
-            targetController.modelItem = modelItem
-        }
     }
 }
 
@@ -81,27 +84,64 @@ extension SearchViewController: APIManagerDelegate {
             if !isLoadingMore {
                 items.removeAll()
             }
-            showHUD(.noMoreData)
+            self.noSearchResultView.isHidden = false
+            self.noSearchResultTextLabel.text = "未找到关于\"\(queryText)\"的搜索结果"
+            hideHUD()
             return
         }
 
         let filteredResult = results.filter { $0.type != "Android" }
+        items.removeAll()
         items.append(contentsOf: filteredResult.map { DataModelItem(withModel: $0) })
         hideHUD()
+        emptyHolderView.isHidden = true
+        searchViewController?.searchBar.resignFirstResponder()
     }
 }
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchHandler(searchBar)
+        tableView.separatorStyle = .singleLine
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchHandler(searchBar)
+    }
+
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        items.removeAll()
+        tableView.separatorStyle = .none
+        return true
+    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.emptyHolderView.isHidden = searchText.isEmpty ? false : true
+        self.noSearchResultView.isHidden = true
+    }
+
+    func searchHandler(_ searchBar: UISearchBar) {
+        self.noSearchResultView.isHidden = true
+
         guard let queryString = searchViewController?.searchBar.text,
-        let urlStr = "http://gank.io/api/search/query/\(queryString)/category/all/count/20/page/\(currentPage)"
-            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+            let urlStr = "https://gank.io/api/search/query/\(queryString)/category/all/count/20/page/\(currentPage)"
+                .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
             let url = URL(string: urlStr) else {
                 showHUD(.warnning)
                 return
         }
+        queryText = queryString
         showHUD()
-        currentTask = apiManager.dataTask(withRequest: URLRequest(url: url))
+//        currentTask = apiManager.dataTask(withRequest: URLRequest(url: url))
+        currentTask = apiManager.dataTask(withURL: url, onFailure: { (error) in
+            DispatchQueue.main.async {
+                self.updateHUD(with: .processingFail)
+            }
+        }, onSuccess: { (data) in
+            DispatchQueue.main.async {
+                self.apiManagerOnSuccess(withData: data)
+            }
+        })
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -127,7 +167,9 @@ extension SearchViewController: UITableViewDataSource {
 
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedItem = items[indexPath.row]
-        performSegue(withIdentifier: "showDetailFromSearch", sender: self)
+        guard let url = items[indexPath.row].url else { return }
+
+        let safariViewController = SFSafariViewController(url: url)
+        present(safariViewController, animated: true, completion: nil)
     }
 }

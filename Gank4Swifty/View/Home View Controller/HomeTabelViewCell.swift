@@ -17,6 +17,7 @@ class HomeTabelViewCell: UITableViewCell {
     @IBOutlet weak var authorButton: UIButton!
     @IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var dateButton: UIButton!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -28,5 +29,6 @@ class HomeTabelViewCell: UITableViewCell {
         authorLabel.text = model.author
         categoryLabel.text = model.type
         dateLabel.text = model.date
+        selectionStyle = .none
     }
 }

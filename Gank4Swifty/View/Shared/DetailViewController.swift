@@ -8,7 +8,6 @@
 
 import UIKit
 import WebKit
-import MarkdownView
 import SafariServices
 
 class DetailViewController: UIViewController {
@@ -36,19 +35,6 @@ class DetailViewController: UIViewController {
         let safariViewController = SFSafariViewController(url: url)
         present(safariViewController, animated: true, completion: nil)
     }
-
-    lazy var markdownView: MarkdownView = {
-        let view = MarkdownView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.onTouchLink = { (request) in
-            guard let url = request.url else { return false }
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            return true
-        }
-
-        
-        return view
-    }()
 
     @IBAction func shareButtonTapped(_ sender: UIBarButtonItem) {
         guard let item = modelItem, let url = item.url else { return }
@@ -120,13 +106,6 @@ class DetailViewController: UIViewController {
         webView.trailingAnchor.constraint(equalTo: webContainer.trailingAnchor).isActive = true
         webView.topAnchor.constraint(equalTo: progressBar.bottomAnchor).isActive = true
         webView.bottomAnchor.constraint(equalTo: webContainer.bottomAnchor).isActive = true
-
-        webContainer.addSubview(markdownView)
-        markdownView.leadingAnchor.constraint(equalTo: webContainer.leadingAnchor).isActive = true
-        markdownView.trailingAnchor.constraint(equalTo: webContainer.trailingAnchor).isActive = true
-        markdownView.topAnchor.constraint(equalTo: webContainer.topAnchor).isActive = true
-        markdownView.bottomAnchor.constraint(equalTo: webContainer.bottomAnchor).isActive = true
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -157,8 +136,6 @@ class DetailViewController: UIViewController {
                     DispatchQueue.main.async {
                         self.loadingIndicator.stopAnimating()
                         self.webView.isHidden = true
-                        self.markdownView.isHidden = false
-                        self.markdownView.load(markdown: content)
                     }
                 }
                 return
@@ -166,7 +143,6 @@ class DetailViewController: UIViewController {
 
             if url.absoluteString.hasPrefix("https://mp.weixin.qq.com") || model.type == "福利"{
                 self.webView.isHidden = false
-                self.markdownView.isHidden = true
                 self.webView.load(URLRequest(url: url))
                 return
             }
@@ -197,7 +173,6 @@ class DetailViewController: UIViewController {
                     self.loadingIndicator.stopAnimating()
                     self.hideHUD()
                     self.webView.isHidden = false
-                    self.markdownView.isHidden = true
                     self.webView.loadHTMLString(contentString, baseURL: nil)
                 }
             }
