@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A30161FB20CE9F7500BA4EDE /* GankAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30161FA20CE9F7500BA4EDE /* GankAction.swift */; };
+		A30161FD20CEC5AE00BA4EDE /* BasePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30161FC20CEC5AE00BA4EDE /* BasePageViewController.swift */; };
 		A301D1A120A7FECD007A132B /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A301D1A020A7FECD007A132B /* UIColor.swift */; };
 		A301D1A420A80AD0007A132B /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A301D1A320A80AD0007A132B /* UIView.swift */; };
 		A304FE1D20B30C6C007B3A49 /* RefreshControlExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A304FE1A20B30C6C007B3A49 /* RefreshControlExtensions.swift */; };
@@ -63,6 +64,7 @@
 
 /* Begin PBXFileReference section */
 		A30161FA20CE9F7500BA4EDE /* GankAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GankAction.swift; sourceTree = "<group>"; };
+		A30161FC20CEC5AE00BA4EDE /* BasePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePageViewController.swift; sourceTree = "<group>"; };
 		A301D1A020A7FECD007A132B /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		A301D1A320A80AD0007A132B /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		A304FE1A20B30C6C007B3A49 /* RefreshControlExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshControlExtensions.swift; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 			children = (
 				A3E75E5620A03FB900CCB95A /* HomeTabelViewCell.xib */,
 				A3E75E5F20A096E800CCB95A /* DetailViewController.swift */,
+				A30161FC20CEC5AE00BA4EDE /* BasePageViewController.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 				A3EE72D620B3E41A00E3EB41 /* UserCollectionViewController.swift in Sources */,
 				A323E36D20A677E300D2DAA9 /* CategoryPageViewController.swift in Sources */,
 				A301D1A420A80AD0007A132B /* UIView.swift in Sources */,
+				A30161FD20CEC5AE00BA4EDE /* BasePageViewController.swift in Sources */,
 				A304FE1E20B30C6C007B3A49 /* RefreshControlHeader.swift in Sources */,
 				A304FE2020B30CB1007B3A49 /* RefreshControlProtocol.swift in Sources */,
 				A33FFC2520B3C18500E8B30F /* LocalDataPersistenceManager.swift in Sources */,
