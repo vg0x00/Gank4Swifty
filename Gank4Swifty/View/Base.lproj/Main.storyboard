@@ -322,7 +322,6 @@
                         <outlet property="headerBar" destination="Iqo-OS-23W" id="7W6-CB-uSv"/>
                         <outlet property="headerBarTextLabel" destination="cCg-XB-taN" id="KBP-nU-rR6"/>
                         <outlet property="tableView" destination="rbv-wo-FZK" id="W1n-gy-BML"/>
-                        <segue destination="VPG-OL-8hb" kind="show" identifier="showDetail" id="xko-fB-ddS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -593,7 +592,6 @@
                         <outlet property="noSearchResultTextLabel" destination="yvf-6D-aaW" id="F1O-n8-2uh"/>
                         <outlet property="noSearchResultView" destination="C7t-bu-EUF" id="WTc-5a-hux"/>
                         <outlet property="tableView" destination="Dto-wH-PZd" id="MxW-hU-fTU"/>
-                        <segue destination="VPG-OL-8hb" kind="show" identifier="showDetailFromSearch" id="8Pq-zH-9sU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5tg-uX-IVa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1315,11 +1313,11 @@
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="VPG-OL-8hb" customClass="DetailViewController" customModule="Gank4Swifty" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FTN-Wj-CxN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="521"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="mg4-iO-Ih8" userLabel="container">
-                                <rect key="frame" x="4" y="24" width="367" height="84"/>
+                                <rect key="frame" x="4" y="68" width="367" height="84"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="luM-Gi-u4A">
                                         <rect key="frame" x="8" y="8" width="351" height="20"/>
@@ -1420,7 +1418,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="VVc-Ht-uQy">
-                                <rect key="frame" x="4" y="108" width="367" height="413"/>
+                                <rect key="frame" x="4" y="152" width="367" height="466"/>
                                 <subviews>
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nMq-Hx-Ndq">
                                         <rect key="frame" x="0.0" y="0.0" width="367" height="2"/>
@@ -1439,7 +1437,7 @@
                                 </constraints>
                             </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="tOk-dI-tT9">
-                                <rect key="frame" x="169" y="296" width="37" height="37"/>
+                                <rect key="frame" x="169" y="366.5" width="37" height="37"/>
                                 <color key="color" cocoaTouchSystemColor="darkTextColor"/>
                             </activityIndicatorView>
                         </subviews>
@@ -1528,7 +1526,6 @@
                     <connections>
                         <outlet property="apiManager" destination="DKG-cP-c0L" id="qR4-BN-7gl"/>
                         <outlet property="tableView" destination="LnE-lI-mh4" id="lUd-38-zoi"/>
-                        <segue destination="VPG-OL-8hb" kind="show" identifier="showPageDetial" id="mGU-Gz-akU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9QO-Iz-6fo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1567,6 +1564,5 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Zrz-Qf-kte"/>
-        <segue reference="mGU-Gz-akU"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import SafariServices
 
 class BannerTableViewCell: UITableViewCell {
     lazy var bannerScrollView: UIScrollView = {
@@ -27,6 +28,18 @@ class BannerTableViewCell: UITableViewCell {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
+
+    typealias BannerSelectionHandler = (URL) -> Void
+
+    var bannerSelectionHandler: BannerSelectionHandler?
+
+    @objc func bannerPanGuestureHandler(sender: UIPanGestureRecognizer) {
+        let pageIndex = pageControl.currentPage
+        guard let items = items else { return }
+        let urlString = items[pageIndex].url
+        guard let url = URL(string: urlString) else { return }
+        bannerSelectionHandler?(url)
+    }
 
     var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
@@ -96,6 +109,17 @@ class BannerTableViewCell: UITableViewCell {
         pageControl.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
         pageControl.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
 
+        let tap = UITapGestureRecognizer(target: self, action: #selector(bannerPanGuestureHandler(sender:)))
+        bannerScrollView.addGestureRecognizer(tap)
+    }
+
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        switch bannerScrollView.panGestureRecognizer.state {
+        case .ended:
+            print("touch ended")
+        default:
+            break
+        }
     }
 
     private func createBannerViewWithModel(model: DataModel) -> BannerView {
@@ -106,6 +130,7 @@ class BannerTableViewCell: UITableViewCell {
             }
         }
         v.titleLabel.text = model.desc
+
         return v
     }
 
@@ -167,6 +192,9 @@ class BannerTableViewCell: UITableViewCell {
     }
 
     func dragWillEnd() {
+        resumeTimer()
+        guard let lastBannerView = lastBannerView else { return }
+        bannerStack.addArrangedSubview(lastBannerView)
     }
 
     deinit {
@@ -187,9 +215,11 @@ extension BannerTableViewCell: UIScrollViewDelegate {
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         print("debug drag will begin")
+        dragBegin()
     }
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         print("debug did end draggin")
+        dragWillEnd()
     }
 }

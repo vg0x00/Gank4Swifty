@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class CategoryPageViewController: UIViewController {
     var pageType: String = "all"
@@ -24,7 +25,6 @@ class CategoryPageViewController: UIViewController {
             tableView.reloadData()
         }
     }
-    var selectedItem: ModelPresentable?
     var observer: NSObjectProtocol?
     var dataInitialized = false
 
@@ -122,13 +122,6 @@ extension CategoryPageViewController: APIManagerDelegate {
         items.append(contentsOf: results.map { DataModelItem(withModel: $0) })
         pageNumber = pageNumber + 1
     }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showPageDetial" {
-            let target = segue.destination as! DetailViewController
-            target.modelItem = selectedItem
-        }
-    }
 }
 
 extension CategoryPageViewController: UITableViewDataSource {
@@ -150,8 +143,11 @@ extension CategoryPageViewController: UITableViewDataSource {
 
 extension CategoryPageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedItem = items[indexPath.row]
-        performSegue(withIdentifier: "showPageDetial", sender: self)
+        let modelItem = items[indexPath.row]
+        guard let url = modelItem.url else { return }
+
+        let safariViewController = SFSafariViewController(url: url)
+        present(safariViewController, animated: true, completion: nil)
     }
 }
 

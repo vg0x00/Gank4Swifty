@@ -7,13 +7,12 @@
 //
 
 import UIKit
+import SafariServices
 
 class UserCollectionViewController: UIViewController {
     let cellId = "userCollectionTableViewCellId"
     let userCollectionHeaderId = "userCollectionHeader"
     let userCollectionToDetailSegue = "userCollectionToDetailSegue"
-
-    var selectedModelItem: ModelPresentable?
 
     @IBOutlet weak var userCollectionTableView: UITableView! {
         didSet {
@@ -50,15 +49,6 @@ class UserCollectionViewController: UIViewController {
         return userCollection[modelKey]
     }
 
-    // MARK - Segue: Push to detail
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == userCollectionToDetailSegue {
-            let targetViewController = segue.destination as! DetailViewController
-            if let targetModel = selectedModelItem {
-                targetViewController.modelItem = targetModel
-            }
-        }
-    }
 }
 
 extension UserCollectionViewController: UITableViewDataSource {
@@ -132,8 +122,10 @@ extension UserCollectionViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let targetModelItem = getModelItem(by: indexPath) else { return }
-        selectedModelItem = targetModelItem
-        performSegue(withIdentifier: userCollectionToDetailSegue, sender: self)
+        guard let targetModelItem = getModelItem(by: indexPath),
+        let url = targetModelItem.url else { return }
+
+        let safariViewController = SFSafariViewController(url: url)
+        present(safariViewController, animated: true, completion: nil)
     }
 }

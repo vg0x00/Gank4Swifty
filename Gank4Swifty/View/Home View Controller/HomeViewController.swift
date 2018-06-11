@@ -121,6 +121,10 @@ extension HomeViewController: UITableViewDataSource {
         if indexPath.section == 0 { // for banner view
             let cell = tableView.dequeueReusableCell(withIdentifier: "bannerCellId", for: indexPath) as! BannerTableViewCell
             cell.configWithModelItems(bannerItems: bannerItems)
+            cell.bannerSelectionHandler = { (url)  in
+                let safariConcontroller = SFSafariViewController(url: url)
+                self.present(safariConcontroller, animated: true, completion: nil)
+            }
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCellId", for: indexPath) as! HomeTabelViewCell
@@ -156,6 +160,8 @@ extension HomeViewController: UITableViewDelegate {
 
             let safariViewController = SFSafariViewController(url: url)
             present(safariViewController, animated: true, completion: nil)
+        } else { // for banner view selection handler
+            print("banner view selected")
         }
     }
 
