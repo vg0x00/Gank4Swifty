@@ -41,7 +41,7 @@ class HomeViewController: UIViewController {
     var bannerSubviews = [BannerView]()
 
     @IBAction func calendarButtonTapped(_ sender: UIBarButtonItem) {
-            animateCalendarIfNeeded(true)
+        animateCalendarIfNeeded(true)
     }
 
     @IBAction func maskViewTapped(_ sender: UITapGestureRecognizer) {
@@ -197,6 +197,9 @@ extension HomeViewController: UITableViewDelegate {
             if !isDuring3DTouch {
                 guard let url = URL(string: modelItem.url) else { return }
                 let safariViewController = SFSafariViewController(url: url)
+                safariViewController.preferredBarTintColor = UIColor(hex: 0xFF6B81)
+                safariViewController.preferredControlTintColor = UIColor.white
+                safariViewController.delegate = self
                 present(safariViewController, animated: true, completion: nil)
             }
         }
@@ -218,6 +221,22 @@ extension HomeViewController: UITableViewDelegate {
         } else {
             return UITableViewAutomaticDimension
         }
+    }
+}
+
+extension HomeViewController: SFSafariViewControllerDelegate {
+    func safariViewController(_ controller: SFSafariViewController, activityItemsFor URL: URL, title: String?) -> [UIActivity] {
+        let activity = GankAction(image: UIImage(named: "userCollection")!)
+        activity.userCollectionHandler = {
+            guard let modelItem = self.selectedItem else { return }
+            LocalDataPersistenceManager.shared.add(model: modelItem, completion: nil)
+        }
+        return [activity]
+    }
+
+
+    func safariViewController(_ controller: SFSafariViewController, excludedActivityTypesFor URL: URL, title: String?) -> [UIActivityType] {
+        return [UIActivityType.airDrop, .assignToContact, .openInIBooks]
     }
 }
 

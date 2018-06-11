@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A30161FB20CE9F7500BA4EDE /* GankAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30161FA20CE9F7500BA4EDE /* GankAction.swift */; };
 		A301D1A120A7FECD007A132B /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A301D1A020A7FECD007A132B /* UIColor.swift */; };
 		A301D1A420A80AD0007A132B /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A301D1A320A80AD0007A132B /* UIView.swift */; };
 		A304FE1D20B30C6C007B3A49 /* RefreshControlExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A304FE1A20B30C6C007B3A49 /* RefreshControlExtensions.swift */; };
@@ -61,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A30161FA20CE9F7500BA4EDE /* GankAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GankAction.swift; sourceTree = "<group>"; };
 		A301D1A020A7FECD007A132B /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		A301D1A320A80AD0007A132B /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		A304FE1A20B30C6C007B3A49 /* RefreshControlExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshControlExtensions.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				A3E75E5920A0584E00CCB95A /* HomeTableHeaderView.swift */,
 				A312F318209DDAA000DF5369 /* SearchViewController.swift */,
 				A312F2E1209C856000DF5369 /* HomeViewController.swift */,
+				A30161FA20CE9F7500BA4EDE /* GankAction.swift */,
 				A3C77CF420C64AD0006E887B /* BannerView.xib */,
 				A3C77CF620C65A09006E887B /* BannerView.swift */,
 				A3C77CF220C50FE7006E887B /* BannerTableViewCell.swift */,
@@ -500,6 +503,7 @@
 				A312F313209CBC0200DF5369 /* DataModelItem.swift in Sources */,
 				A32F24EE209F1F7600C456C2 /* CalendarCellViewCollectionViewCell.swift in Sources */,
 				A312F2E2209C856000DF5369 /* HomeViewController.swift in Sources */,
+				A30161FB20CE9F7500BA4EDE /* GankAction.swift in Sources */,
 				A312F2E0209C856000DF5369 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

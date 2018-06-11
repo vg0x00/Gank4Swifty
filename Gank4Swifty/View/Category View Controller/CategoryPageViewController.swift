@@ -25,6 +25,10 @@ class CategoryPageViewController: UIViewController {
             tableView.reloadData()
         }
     }
+
+    var selectedItem: DataModelItem?
+    var isDuring3DTouch: Bool = false
+
     var observer: NSObjectProtocol?
     var dataInitialized = false
 
@@ -137,13 +141,52 @@ extension CategoryPageViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: pageCellId, for: indexPath) as! HomeTabelViewCell
         let model = items[indexPath.row]
         cell.config(withModelPresentable: model)
+        cell.previewInteractionObject = UIPreviewInteraction(view: cell.contentView)
+        cell.previewInteractionObject?.delegate = self
         return cell
+    }
+}
+
+extension CategoryPageViewController: UIPreviewInteractionDelegate {
+    func previewInteraction(_ previewInteraction: UIPreviewInteraction, didUpdatePreviewTransition transitionProgress: CGFloat, ended: Bool) {
+        isDuring3DTouch = true
+        if ended {
+            // NOTE: show action sheets
+            let action = UIAlertController(title: "喜欢这条干货么?", message: nil, preferredStyle: .actionSheet)
+
+            action.addAction(UIAlertAction(title: "加入收藏", style: .default, handler: { (action) in
+                self.addItemToCollection(model: self.selectedItem)
+            }))
+            action.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+
+            self.present(action, animated: true) {
+                self.isDuring3DTouch = false
+            }
+        }
+    }
+
+    func previewInteractionDidCancel(_ previewInteraction: UIPreviewInteraction) {
+        print("3d touch canceled")
+        self.isDuring3DTouch = false
+    }
+
+    func addItemToCollection(model: DataModelItem?) {
+        guard let model = model else { return }
+        LocalDataPersistenceManager.shared.add(model: model, completion: nil)
+    }
+
+    func removeItemFromCollection(model: DataModelItem?) {
+        guard let model = model else { return }
+        LocalDataPersistenceManager.shared.remove(model: model, completion: nil)
     }
 }
 
 extension CategoryPageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let modelItem = items[indexPath.row]
+        if let model = modelItem as? DataModelItem {
+            selectedItem = model
+        }
         guard let url = modelItem.url else { return }
 
         let safariViewController = SFSafariViewController(url: url)
