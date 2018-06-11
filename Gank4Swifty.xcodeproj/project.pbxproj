@@ -34,8 +34,6 @@
 		A361642820A7EFB1007FA5AF /* IBDesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A361642720A7EFB1007FA5AF /* IBDesignableView.swift */; };
 		A363252320A52DA800C6E5BA /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A363252220A52DA800C6E5BA /* CategoryViewController.swift */; };
 		A392D3A720CD1655007DD8A1 /* IBDesignableImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A392D3A620CD1655007DD8A1 /* IBDesignableImageView.swift */; };
-		A3C77CED20C4166D006E887B /* BannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C77CEC20C4166D006E887B /* BannerViewController.swift */; };
-		A3C77CEF20C4F663006E887B /* BannerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C77CEE20C4F663006E887B /* BannerCellView.swift */; };
 		A3C77CF320C50FE7006E887B /* BannerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C77CF220C50FE7006E887B /* BannerTableViewCell.swift */; };
 		A3C77CF520C64AD0006E887B /* BannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3C77CF420C64AD0006E887B /* BannerView.xib */; };
 		A3C77CF720C65A09006E887B /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C77CF620C65A09006E887B /* BannerView.swift */; };
@@ -95,8 +93,6 @@
 		A363252220A52DA800C6E5BA /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		A392D3A620CD1655007DD8A1 /* IBDesignableImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignableImageView.swift; sourceTree = "<group>"; };
 		A3BD8D3520BD1AFC0047411A /* Gank4Swifty.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Gank4Swifty.entitlements; sourceTree = "<group>"; };
-		A3C77CEC20C4166D006E887B /* BannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerViewController.swift; sourceTree = "<group>"; };
-		A3C77CEE20C4F663006E887B /* BannerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCellView.swift; sourceTree = "<group>"; };
 		A3C77CF220C50FE7006E887B /* BannerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerTableViewCell.swift; sourceTree = "<group>"; };
 		A3C77CF420C64AD0006E887B /* BannerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BannerView.xib; sourceTree = "<group>"; };
 		A3C77CF620C65A09006E887B /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
@@ -144,7 +140,6 @@
 		A304FE1720B30C3C007B3A49 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
-				A3C77CEB20C41659006E887B /* Banner View Controller */,
 				A3D2545620BA836A000A28F8 /* Calendar View Controller */,
 				A36B909820B8692E00E50101 /* HUD View Controller */,
 				A3D6A23E20B6A14E00175274 /* IB Designable View */,
@@ -319,15 +314,6 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		A3C77CEB20C41659006E887B /* Banner View Controller */ = {
-			isa = PBXGroup;
-			children = (
-				A3C77CEC20C4166D006E887B /* BannerViewController.swift */,
-				A3C77CEE20C4F663006E887B /* BannerCellView.swift */,
-			);
-			path = "Banner View Controller";
-			sourceTree = "<group>";
-		};
 		A3D2545620BA836A000A28F8 /* Calendar View Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -492,7 +478,6 @@
 				A301D1A120A7FECD007A132B /* UIColor.swift in Sources */,
 				A334E0A120B30EA000CA7828 /* RefreshControlFooter.swift in Sources */,
 				A312F311209CBBC100DF5369 /* ModelPresentable.swift in Sources */,
-				A3C77CED20C4166D006E887B /* BannerViewController.swift in Sources */,
 				A3FD15BE20B6FD85005FFC67 /* UserTableViewController.swift in Sources */,
 				A312F319209DDAA000DF5369 /* SearchViewController.swift in Sources */,
 				A3D2545820BA840F000A28F8 /* CalendarViewController.swift in Sources */,
@@ -516,7 +501,6 @@
 				A32F24EE209F1F7600C456C2 /* CalendarCellViewCollectionViewCell.swift in Sources */,
 				A312F2E2209C856000DF5369 /* HomeViewController.swift in Sources */,
 				A312F2E0209C856000DF5369 /* AppDelegate.swift in Sources */,
-				A3C77CEF20C4F663006E887B /* BannerCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

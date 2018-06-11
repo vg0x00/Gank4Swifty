@@ -60,7 +60,7 @@ class LocalDataPersistenceManager {
         return categoryKey
     }
 
-    func add(model: DataModelItem, completion: completionHandler) {
+    func add(model: DataModelItem, completion: completionHandler?) {
         let categoryKey = LocalDataPersistenceManager.getCategoryKeyByModelType(model: model)
         var allModelDict = getAllModelDict()
         guard let modelKey = model.url?.absoluteString else { return }
@@ -71,11 +71,11 @@ class LocalDataPersistenceManager {
         let jsonEncoder = JSONEncoder()
         if let serializedModelDict = try? jsonEncoder.encode(allModelDict) {
             UserDefaults.standard.set(serializedModelDict, forKey: localDataPersistenceKey)
-            completion()
+            completion?()
         }
     }
 
-    func remove(model: DataModelItem, completion: completionHandler) {
+    func remove(model: DataModelItem, completion: completionHandler?) {
         let categoryKey = LocalDataPersistenceManager.getCategoryKeyByModelType(model: model)
         var allModelDict = getAllModelDict()
         guard let modelKey = model.url?.absoluteString,
@@ -88,7 +88,7 @@ class LocalDataPersistenceManager {
         let jsonEncoder = JSONEncoder()
         if let serializedModelDict = try? jsonEncoder.encode(allModelDict) {
             UserDefaults.standard.set(serializedModelDict, forKey: localDataPersistenceKey)
-            completion()
+            completion?()
         }
 
     }

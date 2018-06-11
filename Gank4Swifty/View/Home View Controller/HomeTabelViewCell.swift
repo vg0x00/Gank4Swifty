@@ -18,6 +18,10 @@ class HomeTabelViewCell: UITableViewCell {
     @IBOutlet weak var categoryButton: UIButton!
     @IBOutlet weak var dateButton: UIButton!
 
+    var model: ModelPresentable?
+    typealias cell3DTouchHandler = (ModelPresentable) -> Void
+    var previewInteractionObject: UIPreviewInteraction?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,6 +29,7 @@ class HomeTabelViewCell: UITableViewCell {
     }
 
     func config(withModelPresentable model: ModelPresentable) {
+        self.model = model
         descLabel.text = model.title
         authorLabel.text = model.author
         categoryLabel.text = model.type
@@ -32,3 +37,4 @@ class HomeTabelViewCell: UITableViewCell {
         selectionStyle = .none
     }
 }
+

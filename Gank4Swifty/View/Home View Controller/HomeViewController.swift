@@ -22,7 +22,8 @@ class HomeViewController: UIViewController {
         }
     }
 
-  
+    var isDuring3DTouch: Bool = false
+    var selectedItem: DataModelItem?
     
     @IBOutlet weak var headerBarTextLabel: UILabel!
     var historyModelContainer: HistoryModelContainer? {
@@ -134,8 +135,44 @@ extension HomeViewController: UITableViewDataSource {
             let model = DataModelItem(withModel: modelList[indexPath.row])
 
             cell.config(withModelPresentable: model)
+            cell.previewInteractionObject = UIPreviewInteraction(view: cell.contentView)
+            cell.previewInteractionObject?.delegate = self
             return cell
         }
+    }
+}
+
+extension HomeViewController: UIPreviewInteractionDelegate {
+    func previewInteraction(_ previewInteraction: UIPreviewInteraction, didUpdatePreviewTransition transitionProgress: CGFloat, ended: Bool) {
+        isDuring3DTouch = true
+        if ended {
+            // NOTE: show action sheets
+            let action = UIAlertController(title: "喜欢这条干货么?", message: nil, preferredStyle: .actionSheet)
+
+            action.addAction(UIAlertAction(title: "加入收藏", style: .default, handler: { (action) in
+                self.addItemToCollection(model: self.selectedItem)
+            }))
+            action.addAction(UIAlertAction(title: "取消", style: .cancel, handler: nil))
+
+            self.present(action, animated: true) {
+                self.isDuring3DTouch = false
+            }
+        }
+    }
+
+    func previewInteractionDidCancel(_ previewInteraction: UIPreviewInteraction) {
+        print("3d touch canceled")
+        self.isDuring3DTouch = false
+    }
+
+    func addItemToCollection(model: DataModelItem?) {
+        guard let model = model else { return }
+        LocalDataPersistenceManager.shared.add(model: model, completion: nil)
+    }
+
+    func removeItemFromCollection(model: DataModelItem?) {
+        guard let model = model else { return }
+        LocalDataPersistenceManager.shared.remove(model: model, completion: nil)
     }
 }
 
@@ -156,12 +193,12 @@ extension HomeViewController: UITableViewDelegate {
                 let modelList = modelDict[category] else { return }
             let modelItem = modelList[indexPath.row]
 
-            guard let url = URL(string: modelItem.url) else { return }
-
-            let safariViewController = SFSafariViewController(url: url)
-            present(safariViewController, animated: true, completion: nil)
-        } else { // for banner view selection handler
-            print("banner view selected")
+            selectedItem = DataModelItem(withModel: modelItem)
+            if !isDuring3DTouch {
+                guard let url = URL(string: modelItem.url) else { return }
+                let safariViewController = SFSafariViewController(url: url)
+                present(safariViewController, animated: true, completion: nil)
+            }
         }
     }
 
