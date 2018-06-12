@@ -170,6 +170,9 @@ extension SearchViewController: UITableViewDelegate {
         guard let url = items[indexPath.row].url else { return }
 
         let safariViewController = SFSafariViewController(url: url)
+        safariViewController.preferredBarTintColor = UIColor(hex: 0xFF6B81)
+        safariViewController.preferredControlTintColor = UIColor.white
+
         present(safariViewController, animated: true, completion: nil)
     }
 }
