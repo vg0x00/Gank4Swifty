@@ -897,19 +897,28 @@
                                     <outlet property="delegate" destination="1MT-t2-tAn" id="bMA-WI-fSu"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kMg-hH-Dm2" userLabel="empty collection view">
+                                <rect key="frame" x="0.0" y="80" width="375" height="538"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" red="0.94509803920000002" green="0.94901960780000005" blue="0.96470588239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="awW-jN-ffr" firstAttribute="bottom" secondItem="j4x-kc-OVZ" secondAttribute="bottom" id="07p-Nv-a3n"/>
+                            <constraint firstItem="awW-jN-ffr" firstAttribute="trailing" secondItem="kMg-hH-Dm2" secondAttribute="trailing" id="35q-eP-xle"/>
                             <constraint firstItem="j4x-kc-OVZ" firstAttribute="top" secondItem="awW-jN-ffr" secondAttribute="top" id="7ry-HW-W7X"/>
                             <constraint firstItem="awW-jN-ffr" firstAttribute="trailing" secondItem="j4x-kc-OVZ" secondAttribute="trailing" id="Hlo-sa-rFc"/>
                             <constraint firstItem="j4x-kc-OVZ" firstAttribute="leading" secondItem="awW-jN-ffr" secondAttribute="leading" id="Klk-O4-wAP"/>
+                            <constraint firstItem="awW-jN-ffr" firstAttribute="bottom" secondItem="kMg-hH-Dm2" secondAttribute="bottom" id="gsu-eQ-3Bw"/>
+                            <constraint firstItem="kMg-hH-Dm2" firstAttribute="leading" secondItem="awW-jN-ffr" secondAttribute="leading" id="nYC-Pa-pov"/>
+                            <constraint firstItem="kMg-hH-Dm2" firstAttribute="top" secondItem="awW-jN-ffr" secondAttribute="top" constant="16" id="pLl-hn-mWV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="awW-jN-ffr"/>
                     </view>
                     <navigationItem key="navigationItem" title="干货收藏" id="fXR-wt-H5s"/>
                     <connections>
+                        <outlet property="emptyCollectionMaskView" destination="kMg-hH-Dm2" id="UaR-RJ-z5D"/>
                         <outlet property="userCollectionTableView" destination="j4x-kc-OVZ" id="y1a-Ch-d0B"/>
                         <segue destination="VPG-OL-8hb" kind="show" identifier="userCollectionToDetailSegue" id="5Mk-J1-s9a"/>
                     </connections>

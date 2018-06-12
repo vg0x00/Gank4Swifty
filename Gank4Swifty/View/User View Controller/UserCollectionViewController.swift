@@ -8,12 +8,14 @@
 
 import UIKit
 import SafariServices
+import WebKit
 
 class UserCollectionViewController: UIViewController {
     let cellId = "userCollectionTableViewCellId"
     let userCollectionHeaderId = "userCollectionHeader"
     let userCollectionToDetailSegue = "userCollectionToDetailSegue"
 
+    @IBOutlet weak var emptyCollectionMaskView: UIView!
     @IBOutlet weak var userCollectionTableView: UITableView! {
         didSet {
             userCollectionTableView.register(UINib(nibName: "HomeTabelViewCell", bundle: nil), forCellReuseIdentifier: cellId)
@@ -22,11 +24,43 @@ class UserCollectionViewController: UIViewController {
             userCollectionTableView.estimatedSectionHeaderHeight = 100
         }
     }
-    var userCollectionDict = [String: [String: DataModelItem]]()
+    var userCollectionDict = [String: [String: DataModelItem]]() {
+        didSet {
+            if isEmptyGankDict(dict: userCollectionDict) {
+                emptyCollectionMaskView.isHidden = false
+            } else {
+                emptyCollectionMaskView.isHidden = true
+            }
+        }
+    }
+
+    private func isEmptyGankDict(dict: [String: [String: DataModelItem]]) -> Bool {
+        for list in dict.values {
+            if !list.isEmpty {
+                return false
+            }
+        }
+        return true
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUserCollectionData()
+        loadEmptyPageMuskView()
+    }
+
+    func loadEmptyPageMuskView() {
+        let webView = WKWebView()
+        let htmlPath = Bundle.main.path(forResource: "index", ofType: "html")
+        let htmlUrl = URL(fileURLWithPath: htmlPath!, isDirectory: false)
+        webView.loadFileURL(htmlUrl, allowingReadAccessTo: htmlUrl)
+        webView.translatesAutoresizingMaskIntoConstraints = false
+
+        emptyCollectionMaskView.addSubview(webView)
+        webView.leadingAnchor.constraint(equalTo: emptyCollectionMaskView.leadingAnchor).isActive = true
+        webView.trailingAnchor.constraint(equalTo: emptyCollectionMaskView.trailingAnchor).isActive = true
+        webView.topAnchor.constraint(equalTo: emptyCollectionMaskView.topAnchor).isActive = true
+        webView.bottomAnchor.constraint(equalTo: emptyCollectionMaskView.bottomAnchor).isActive = true
     }
 
     private func loadUserCollectionData() {

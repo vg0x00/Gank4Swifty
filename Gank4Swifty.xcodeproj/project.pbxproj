@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		A30161FB20CE9F7500BA4EDE /* GankAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30161FA20CE9F7500BA4EDE /* GankAction.swift */; };
 		A30161FD20CEC5AE00BA4EDE /* BasePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30161FC20CEC5AE00BA4EDE /* BasePageViewController.swift */; };
+		A301620320CFE4AC00BA4EDE /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = A301620220CFE4AC00BA4EDE /* index.html */; };
+		A301620920CFE4E500BA4EDE /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = A301620420CFE4E400BA4EDE /* image.png */; };
+		A301620A20CFE4E500BA4EDE /* addInSafari@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A301620520CFE4E500BA4EDE /* addInSafari@3x.png */; };
+		A301620B20CFE4E500BA4EDE /* addInSafari2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A301620620CFE4E500BA4EDE /* addInSafari2@3x.png */; };
+		A301620C20CFE4E500BA4EDE /* step2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A301620720CFE4E500BA4EDE /* step2@3x.png */; };
+		A301620D20CFE4E500BA4EDE /* step1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = A301620820CFE4E500BA4EDE /* step1@3x.png */; };
 		A301D1A120A7FECD007A132B /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A301D1A020A7FECD007A132B /* UIColor.swift */; };
 		A301D1A420A80AD0007A132B /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A301D1A320A80AD0007A132B /* UIView.swift */; };
 		A304FE1D20B30C6C007B3A49 /* RefreshControlExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A304FE1A20B30C6C007B3A49 /* RefreshControlExtensions.swift */; };
@@ -42,6 +48,9 @@
 		A3C77CFB20C69BC1006E887B /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C77CFA20C69BC1006E887B /* Kingfisher.framework */; };
 		A3CA44D720A8876B000CCE4D /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CA44D620A8876B000CCE4D /* UIViewControllerExtension.swift */; };
 		A3D2545820BA840F000A28F8 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2545720BA840F000A28F8 /* CalendarViewController.swift */; };
+		A3D3210F20CFE63C001E8269 /* semantic.css in Resources */ = {isa = PBXBuildFile; fileRef = A3D3210E20CFE63C001E8269 /* semantic.css */; };
+		A3D3211220CFE64C001E8269 /* jquery.min.js in Resources */ = {isa = PBXBuildFile; fileRef = A3D3211020CFE64B001E8269 /* jquery.min.js */; };
+		A3D3211320CFE64C001E8269 /* semantic.js in Resources */ = {isa = PBXBuildFile; fileRef = A3D3211120CFE64C001E8269 /* semantic.js */; };
 		A3D6A23D20B6909100175274 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D6A23C20B6909100175274 /* PostViewController.swift */; };
 		A3D6A24020B6A17100175274 /* IBDesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D6A23F20B6A17100175274 /* IBDesignableButton.swift */; };
 		A3E75E5720A03FB900CCB95A /* HomeTabelViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E75E5520A03FB900CCB95A /* HomeTabelViewCell.swift */; };
@@ -65,6 +74,12 @@
 /* Begin PBXFileReference section */
 		A30161FA20CE9F7500BA4EDE /* GankAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GankAction.swift; sourceTree = "<group>"; };
 		A30161FC20CEC5AE00BA4EDE /* BasePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePageViewController.swift; sourceTree = "<group>"; };
+		A301620220CFE4AC00BA4EDE /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		A301620420CFE4E400BA4EDE /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
+		A301620520CFE4E500BA4EDE /* addInSafari@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addInSafari@3x.png"; sourceTree = "<group>"; };
+		A301620620CFE4E500BA4EDE /* addInSafari2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addInSafari2@3x.png"; sourceTree = "<group>"; };
+		A301620720CFE4E500BA4EDE /* step2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "step2@3x.png"; sourceTree = "<group>"; };
+		A301620820CFE4E500BA4EDE /* step1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "step1@3x.png"; sourceTree = "<group>"; };
 		A301D1A020A7FECD007A132B /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		A301D1A320A80AD0007A132B /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		A304FE1A20B30C6C007B3A49 /* RefreshControlExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshControlExtensions.swift; sourceTree = "<group>"; };
@@ -103,6 +118,9 @@
 		A3C77CFA20C69BC1006E887B /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
 		A3CA44D620A8876B000CCE4D /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		A3D2545720BA840F000A28F8 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		A3D3210E20CFE63C001E8269 /* semantic.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = semantic.css; sourceTree = "<group>"; };
+		A3D3211020CFE64B001E8269 /* jquery.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = jquery.min.js; sourceTree = "<group>"; };
+		A3D3211120CFE64C001E8269 /* semantic.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = semantic.js; sourceTree = "<group>"; };
 		A3D6A23C20B6909100175274 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		A3D6A23F20B6A17100175274 /* IBDesignableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBDesignableButton.swift; sourceTree = "<group>"; };
 		A3E75E5520A03FB900CCB95A /* HomeTabelViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabelViewCell.swift; sourceTree = "<group>"; };
@@ -132,6 +150,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A30161FE20CFE47700BA4EDE /* LocalWebPage */ = {
+			isa = PBXGroup;
+			children = (
+				A301620120CFE49200BA4EDE /* img */,
+				A301620020CFE48D00BA4EDE /* css */,
+				A30161FF20CFE48400BA4EDE /* js */,
+				A301620220CFE4AC00BA4EDE /* index.html */,
+			);
+			path = LocalWebPage;
+			sourceTree = "<group>";
+		};
+		A30161FF20CFE48400BA4EDE /* js */ = {
+			isa = PBXGroup;
+			children = (
+				A3D3211020CFE64B001E8269 /* jquery.min.js */,
+				A3D3211120CFE64C001E8269 /* semantic.js */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
+		A301620020CFE48D00BA4EDE /* css */ = {
+			isa = PBXGroup;
+			children = (
+				A3D3210E20CFE63C001E8269 /* semantic.css */,
+			);
+			path = css;
+			sourceTree = "<group>";
+		};
+		A301620120CFE49200BA4EDE /* img */ = {
+			isa = PBXGroup;
+			children = (
+				A301620520CFE4E500BA4EDE /* addInSafari@3x.png */,
+				A301620620CFE4E500BA4EDE /* addInSafari2@3x.png */,
+				A301620420CFE4E400BA4EDE /* image.png */,
+				A301620820CFE4E500BA4EDE /* step1@3x.png */,
+				A301620720CFE4E500BA4EDE /* step2@3x.png */,
+			);
+			path = img;
+			sourceTree = "<group>";
+		};
 		A301D1A220A80AB7007A132B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +244,7 @@
 		A312F2DE209C856000DF5369 /* Gank4Swifty */ = {
 			isa = PBXGroup;
 			children = (
+				A30161FE20CFE47700BA4EDE /* LocalWebPage */,
 				A3BD8D3520BD1AFC0047411A /* Gank4Swifty.entitlements */,
 				A304FE1720B30C3C007B3A49 /* Libs */,
 				A301D1A220A80AB7007A132B /* Extension */,
@@ -434,9 +493,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3C77CF520C64AD0006E887B /* BannerView.xib in Resources */,
+				A301620B20CFE4E500BA4EDE /* addInSafari2@3x.png in Resources */,
 				A312F2EA209C856100DF5369 /* LaunchScreen.storyboard in Resources */,
+				A3D3210F20CFE63C001E8269 /* semantic.css in Resources */,
 				A312F2E7209C856100DF5369 /* Assets.xcassets in Resources */,
+				A301620320CFE4AC00BA4EDE /* index.html in Resources */,
+				A301620920CFE4E500BA4EDE /* image.png in Resources */,
+				A301620C20CFE4E500BA4EDE /* step2@3x.png in Resources */,
 				A3E75E5820A03FB900CCB95A /* HomeTabelViewCell.xib in Resources */,
+				A301620D20CFE4E500BA4EDE /* step1@3x.png in Resources */,
+				A3D3211320CFE64C001E8269 /* semantic.js in Resources */,
+				A301620A20CFE4E500BA4EDE /* addInSafari@3x.png in Resources */,
+				A3D3211220CFE64C001E8269 /* jquery.min.js in Resources */,
 				A312F2E5209C856000DF5369 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
