@@ -122,6 +122,8 @@ extension HomeViewController: UITableViewDataSource {
             cell.configWithModelItems(bannerItems: bannerItems)
             cell.bannerSelectionHandler = { (url)  in
                 let safariConcontroller = SFSafariViewController(url: url)
+                safariConcontroller.preferredBarTintColor = UIColor(hex: 0xFF6B81)
+                safariConcontroller.preferredControlTintColor = UIColor.white
                 self.present(safariConcontroller, animated: true, completion: nil)
             }
             return cell
